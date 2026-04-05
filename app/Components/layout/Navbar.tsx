@@ -19,14 +19,13 @@ export default function Navbar() {
     <>
       <nav className="fixed top-0 w-full z-50 bg-[#131313]/90 backdrop-blur-md border-b border-primary/20 flex px-6 py-4 max-w-[1920px] mx-auto left-0 right-0 items-center justify-between">
       <Link href="/" className="flex items-center gap-4">
-        <div className="h-8 w-8 bg-white flex items-center justify-center rounded-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
-            <path d="M12 8l-4 4"></path>
-            <path d="M12 8v8"></path>
-            <path d="M16 12l-4 -4"></path>
-          </svg>
-        </div>
+        <Image 
+          alt="TEAM ARION Logo" 
+          width={32} 
+          height={32} 
+          src="/images/Logo.jpg" 
+          className="h-8 w-8 object-contain rounded-sm" 
+        />
         <span className="text-xl font-black text-[#00D3B0] tracking-tighter font-display uppercase">
           TEAM ARION
         </span>
