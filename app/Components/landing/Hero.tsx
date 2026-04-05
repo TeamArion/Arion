@@ -27,8 +27,7 @@ export default function Hero() {
           LIMITS
         </h1>
         <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-8">
-          <Link href="/brochure" className="group flex flex-col items-center">
-            <div className="w-12 h-1 bg-[#00D3B0] mb-4 transition-all group-hover:w-16"></div>
+          <Link href="/brochure" className="group inline-flex items-center justify-center px-8 py-3 border border-white bg-transparent hover:bg-white/10 transition-all rounded-sm">
             <span className="font-display font-bold text-white text-sm md:text-base tracking-[0.2em] uppercase">
               OUR BROCHURE
             </span>

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function AboutInstitution() {
   return (
-    <section className="bg-black py-24 border-b border-white/5 relative">
+    <section className="bg-black pt-24 pb-12 border-b border-white/5 relative">
       <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
         <div className="flex-1 space-y-8">
           <div className="w-12 h-1 bg-[#00D3B0] mb-8"></div>

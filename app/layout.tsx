@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased min-h-screen flex flex-col bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
         <Navbar />
-       <main className="flex-grow w-full pt-20">
+       <main className="flex-grow w-full pt-0">
   {children}
 </main>
         
