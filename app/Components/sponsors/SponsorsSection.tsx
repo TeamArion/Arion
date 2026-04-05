@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { premiumSponsors } from '@/data/sponsors/premiumSponsors';
-import { regularSponsors } from '@/data/sponsors/regularSponsors';
+import { platinumSponsors } from '@/data/sponsors/platinumSponsors';
+import { goldSponsors } from '@/data/sponsors/goldSponsors';
+import { silverSponsors } from '@/data/sponsors/silverSponsors';
+import { bronzeSponsors } from '@/data/sponsors/bronzeSponsors';
+
 import Plat_GoldCard from './Plat_GoldCard';
-import ExpandableCard from './ExpandableCard';
+import SilverSponsor from './silver_sponsor';
+import BronzeSponsor from './bronze_sponsor';
 
 export default function SponsorsSection() {
-  const platinum = premiumSponsors.filter(s => s.tier === 'Platinum');
-  const gold = premiumSponsors.filter(s => s.tier === 'Gold');
-  const silver = regularSponsors.filter(s => s.tier === 'Silver');
-  const bronze = regularSponsors.filter(s => s.tier === 'Bronze');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -31,8 +31,8 @@ export default function SponsorsSection() {
       {/* PLATINUM */}
       <section className="mb-32">
         <div className="flex items-center gap-4 mb-12">
-          <span className="w-16 h-[1px] bg-[#E8001A]"></span>
-          <h2 className="font-display font-bold text-sm tracking-[0.4em] uppercase text-[#E8001A]">Platinum Partner</h2>
+          <span className="w-16 h-[1px] bg-[#0BEAE0]"></span>
+          <h2 className="font-display font-bold text-sm tracking-[0.4em] uppercase text-[#0BEAE0]">Platinum Partner</h2>
         </div>
         <motion.div 
           className="w-full h-full"
@@ -41,7 +41,7 @@ export default function SponsorsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {platinum.map(s => (
+          {platinumSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
               <Plat_GoldCard sponsor={s} />
             </motion.div>
@@ -62,7 +62,7 @@ export default function SponsorsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {gold.map(s => (
+          {goldSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
               <Plat_GoldCard sponsor={s} />
             </motion.div>
@@ -73,8 +73,8 @@ export default function SponsorsSection() {
       {/* SILVER */}
       <section className="mb-32">
         <div className="flex items-center gap-4 mb-12">
-          <span className="w-16 h-[1px] bg-[#5e3f3b]"></span>
-          <h2 className="font-display font-bold text-sm tracking-[0.4em] uppercase text-[#5e3f3b]">Silver Partners</h2>
+          <span className="w-16 h-[1px] bg-[#08100f]"></span>
+          <h2 className="font-display font-bold text-sm tracking-[0.4em] uppercase text-[#747373]">Silver Partners</h2>
         </div>
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
@@ -83,9 +83,9 @@ export default function SponsorsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {silver.map(s => (
+          {silverSponsors.map(s => (
             <motion.div key={s.id} variants={itemVariants}>
-              <ExpandableCard sponsor={s} />
+              <SilverSponsor sponsor={s} />
             </motion.div>
           ))}
         </motion.div>
@@ -94,19 +94,20 @@ export default function SponsorsSection() {
       {/* BRONZE */}
       <section>
         <div className="flex items-center gap-4 mb-12">
-          <span className="w-16 h-[1px] bg-[#353534]"></span>
-          <h2 className="font-display font-bold text-sm tracking-[0.4em] uppercase text-[#747373]">Bronze Partners</h2>
+          <span className="w-16 h-[1px] bg-[#2a2a2a]"></span>
+          <h2 className="font-display font-bold text-sm tracking-[0.4em] uppercase text-[#5e3f3b]">Bronze Partners</h2>
         </div>
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+          className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-8 gap-y-0"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {bronze.map(s => (
+          {/* Bronze uses a dropdown layout, so multiple columns as lists */}
+          {bronzeSponsors.map(s => (
             <motion.div key={s.id} variants={itemVariants}>
-              <ExpandableCard sponsor={s} />
+              <BronzeSponsor sponsor={s} />
             </motion.div>
           ))}
         </motion.div>

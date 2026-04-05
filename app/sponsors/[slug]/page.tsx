@@ -1,7 +1,10 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { premiumSponsors } from '@/data/sponsors/premiumSponsors';
+import { platinumSponsors } from '@/data/sponsors/platinumSponsors';
+import { goldSponsors } from '@/data/sponsors/goldSponsors';
+
+const premiumSponsors = [...platinumSponsors, ...goldSponsors];
 
 export function generateStaticParams() {
   return premiumSponsors.map((sponsor) => ({
@@ -17,13 +20,13 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
   }
 
   return (
-    <main className="min-h-screen bg-[#0e0e0e] text-[#e5e2e1] pt-32 pb-24 selection:bg-[#E8001A] selection:text-[#fff9f8] font-body flex flex-col">
+    <main className="min-h-screen bg-[#08100f] text-[#e5e2e1] pt-32 pb-24 selection:bg-[#0BEAE0] selection:text-[#fff9f8] font-body flex flex-col">
       <article className="max-w-5xl mx-auto px-6 w-full flex-grow">
         
         {/* Navigation back */}
         <Link 
           href="/sponsors" 
-          className="inline-flex items-center gap-2 text-[#747373] hover:text-[#E8001A] transition-colors mb-16 uppercase tracking-[0.2em] text-xs font-display font-bold"
+          className="inline-flex items-center gap-2 text-[#747373] hover:text-[#0BEAE0] transition-colors mb-16 uppercase tracking-[0.2em] text-xs font-display font-bold"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -34,7 +37,7 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
         {/* Header Section */}
         <header className="flex flex-col md:flex-row items-center md:items-start gap-12 mb-20">
           {/* Circular Logo exactly as requested */}
-          <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-[#2a2a2a] bg-[#131313] p-8 flex-shrink-0 flex items-center justify-center shadow-[0_0_50px_rgba(232,0,26,0.05)]">
+          <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-[#1a2624] bg-[#000000] p-8 flex-shrink-0 flex items-center justify-center shadow-[0_0_50px_rgba(11,234,224,0.05)]">
             <div className="relative w-full h-full">
               <Image 
                 src={sponsor.logo}
@@ -45,7 +48,7 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
             </div>
             
             {/* Tier Badge inside logo container absolute bounding */}
-            <div className={`absolute -bottom-4 bg-[#0e0e0e] border ${sponsor.tier === 'Platinum' ? 'border-[#E8001A] text-[#E8001A]' : 'border-[#c6c6c6] text-[#c6c6c6]'} px-6 py-2 uppercase tracking-[0.3em] font-display font-bold text-xs`}>
+            <div className={`absolute -bottom-4 bg-[#08100f] border ${sponsor.tier === 'Platinum' ? 'border-[#0BEAE0] text-[#0BEAE0]' : 'border-[#c6c6c6] text-[#c6c6c6]'} px-6 py-2 uppercase tracking-[0.3em] font-display font-bold text-xs`}>
               {sponsor.tier}
             </div>
           </div>
@@ -57,7 +60,7 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
             
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
               {sponsor.socials.website && (
-                <a href={sponsor.socials.website} target="_blank" rel="noopener noreferrer" className="border border-[#46484d] text-white hover:border-[#E8001A] hover:bg-[#E8001A] transition-colors px-6 py-3 font-display font-bold text-xs uppercase tracking-[0.2em]">
+                <a href={sponsor.socials.website} target="_blank" rel="noopener noreferrer" className="border border-[#46484d] text-white hover:border-[#0BEAE0] hover:bg-[#003634] transition-colors px-6 py-3 font-display font-bold text-xs uppercase tracking-[0.2em]">
                   Visit Website
                 </a>
               )}
@@ -77,7 +80,7 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
 
         {/* Description Section */}
         {/* Exactly 250 words generally handled by data layer. Visualized cleanly without curved borders. */}
-        <section className="bg-[#131313] p-8 md:p-12 mb-20 border-l border-[#E8001A]">
+        <section className="bg-[#000000] p-8 md:p-12 mb-20 border-l border-[#0BEAE0]">
           <p className="font-body text-[#c8c6c5] leading-loose text-lg whitespace-pre-line">
             {sponsor.description}
           </p>
@@ -87,11 +90,11 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
         {sponsor.tier === 'Platinum' && sponsor.gallery && sponsor.gallery.length > 0 && (
           <section className="mb-20">
             <h2 className="font-display font-black text-4xl uppercase tracking-tighter text-white mb-8 border-b border-[#2a2a2a] pb-4">
-              Arion <span className="text-[#E8001A] font-light">X</span> {sponsor.name}
+              Arion <span className="text-[#0BEAE0] font-light">X</span> {sponsor.name}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {sponsor.gallery.map((imgUrl, i) => (
-                <div key={i} className="relative aspect-video w-full border border-[#2a2a2a] hover:border-[#E8001A] transition-colors overflow-hidden group">
+                <div key={i} className="relative aspect-video w-full border border-[#1a2624] hover:border-[#0BEAE0] transition-colors overflow-hidden group">
                   <Image 
                     src={imgUrl}
                     alt={`Arion and ${sponsor.name} collaborative moment ${i + 1}`}
@@ -106,7 +109,7 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
       </article>
 
       {/* Embedded Footer */}
-      <footer className="w-full border-t border-[#2a2a2a] bg-[#0e0e0e] mt-auto">
+      <footer className="w-full border-t border-[#1a2624] bg-[#08100f] mt-auto">
         <div className="max-w-[1920px] mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="font-display font-bold uppercase tracking-[0.2em] text-xs text-[#747373]">
             &copy; {new Date().getFullYear()} Team Arion Racing.
