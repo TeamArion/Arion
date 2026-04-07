@@ -2,15 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./Components/layout/Navbar";
 
+import { Inter } from "next/font/google";
 
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geist = Geist({
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
+  variable: "--font-inter", // optional (useful for Tailwind)
 });
 
 export const metadata: Metadata = {
@@ -21,17 +17,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex flex-col bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+      <body
+        className={`${inter.className} antialiased min-h-screen flex flex-col bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container`}
+      >
         <Navbar />
-       <main className="flex-grow w-full pt-0">
-  {children}
-</main>
-        
+        <main className="flex-grow w-full pt-0">{children}</main>
       </body>
     </html>
   );
