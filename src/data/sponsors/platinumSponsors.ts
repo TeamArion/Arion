@@ -1,4 +1,4 @@
-import { PremiumSponsor } from './types';
+import { PremiumSponsor } from '@/data/sponsors/types';
 
 export const platinumSponsors: PremiumSponsor[] = [
   {

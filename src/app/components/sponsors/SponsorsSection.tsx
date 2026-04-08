@@ -6,9 +6,9 @@ import { goldSponsors } from '@/data/sponsors/goldSponsors';
 import { silverSponsors } from '@/data/sponsors/silverSponsors';
 import { bronzeSponsors } from '@/data/sponsors/bronzeSponsors';
 
-import Plat_GoldCard from './Plat_GoldCard';
-import SilverSponsor from './silver_sponsor';
-import BronzeSponsor from './bronze_sponsor';
+import PlatinumGoldCard from '@/app/components/sponsors/PlatinumGoldCard';
+import SilverSponsor from '@/app/components/sponsors/SilverSponsor';
+import BronzeSponsor from '@/app/components/sponsors/BronzeSponsor';
 
 export default function SponsorsSection() {
 
@@ -43,7 +43,7 @@ export default function SponsorsSection() {
         >
           {platinumSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
-              <Plat_GoldCard sponsor={s} />
+              <PlatinumGoldCard sponsor={s} />
             </motion.div>
           ))}
         </motion.div>
@@ -64,7 +64,7 @@ export default function SponsorsSection() {
         >
           {goldSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
-              <Plat_GoldCard sponsor={s} />
+              <PlatinumGoldCard sponsor={s} />
             </motion.div>
           ))}
         </motion.div>

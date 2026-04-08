@@ -7,7 +7,7 @@ interface Props {
   sponsor: PremiumSponsor;
 }
 
-export default function Plat_GoldCard({ sponsor }: Props) {
+export default function PlatinumGoldCard({ sponsor }: Props) {
   // Plat: larger card, Gold: standard. We can let the parent grid handle sizing.
   // The card respects the kinetic monolith "0px" border radius and strict borders.
 
