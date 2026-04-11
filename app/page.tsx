@@ -4,7 +4,7 @@ import Hero from "./Components/landing/Hero";
 import About from "./Components/landing/About";
 import MissionVision from "./Components/landing/MissionVision";
 import AboutInstitution from "./Components/landing/AboutInstitution";
-import Footer from "./Components/layout/Footer";
+
 
 export default function Home() {
   return (
@@ -13,7 +13,6 @@ export default function Home() {
       <About />
       <AboutInstitution />
       <MissionVision />
-      <Footer />
     </div>
   );
 }
