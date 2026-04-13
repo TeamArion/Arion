@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;700&display=swap');
 
 @import "tailwindcss";
-@source "./Components";
+@source "../";
+
+@theme {
+  --font-body: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+}
 
 @layer base {
   :root {
@@ -13,12 +17,12 @@
 body {
   color: var(--foreground);
   background-color: var(--background);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body), sans-serif;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, .font-display {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-display), sans-serif;
 }
 
 .kinetic-gradient {

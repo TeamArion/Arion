@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { platinumSponsors } from '@/app/data/sponsors/platinumSponsors';
-import { goldSponsors } from '@/app/data/sponsors/goldSponsors';
-import { silverSponsors } from '@/app/data/sponsors/silverSponsors';
-import { bronzeSponsors } from '@/app/data/sponsors/bronzeSponsors';
+import { platinumSponsors } from '@data/sponsors/platinumSponsors';
+import { goldSponsors } from '@data/sponsors/goldSponsors';
+import { silverSponsors } from '@data/sponsors/silverSponsors';
+import { bronzeSponsors } from '@data/sponsors/bronzeSponsors';
 
-import PlatinumGoldSponsor from '@/app/Components/sponsors/PlatinumGoldSponsor';
-import SilverSponsor from '@/app/Components/sponsors/SilverSponsor';
-import BronzeSponsor from '@/app/Components/sponsors/BronzeSponsor';
+import PlatinumGoldCard from '@components/sponsors/PlatinumGoldCard';
+import SilverCard from '@components/sponsors/SilverCard';
+import BronzeCard from '@components/sponsors/BronzeCard';
 
 export default function SponsorsSection() {
 
@@ -43,7 +43,7 @@ export default function SponsorsSection() {
         >
           {platinumSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
-              <PlatinumGoldSponsor sponsor={s} />
+              <PlatinumGoldCard sponsor={s} />
             </motion.div>
           ))}
         </motion.div>
@@ -64,7 +64,7 @@ export default function SponsorsSection() {
         >
           {goldSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
-              <PlatinumGoldSponsor sponsor={s} />
+              <PlatinumGoldCard sponsor={s} />
             </motion.div>
           ))}
         </motion.div>
@@ -85,7 +85,7 @@ export default function SponsorsSection() {
         >
           {silverSponsors.map(s => (
             <motion.div key={s.id} variants={itemVariants}>
-              <SilverSponsor sponsor={s} />
+              <SilverCard sponsor={s} />
             </motion.div>
           ))}
         </motion.div>
@@ -107,7 +107,7 @@ export default function SponsorsSection() {
           {/* Bronze uses a dropdown layout, so multiple columns as lists */}
           {bronzeSponsors.map(s => (
             <motion.div key={s.id} variants={itemVariants}>
-              <BronzeSponsor sponsor={s} />
+              <BronzeCard sponsor={s} />
             </motion.div>
           ))}
         </motion.div>

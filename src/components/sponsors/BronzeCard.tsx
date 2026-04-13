@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RegularSponsor } from '@/app/data/sponsors/types';
+import { RegularSponsor } from '@data/sponsors/types';
 
 interface Props {
   sponsor: RegularSponsor;
 }
 
-export default function BronzeSponsor({ sponsor }: Props) {
+export default function BronzeCard({ sponsor }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

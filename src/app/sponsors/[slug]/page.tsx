@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { platinumSponsors } from '@/app/data/sponsors/platinumSponsors';
-import { goldSponsors } from '@/app/data/sponsors/goldSponsors';
+import Footer from '@layout/Footer';
+import { platinumSponsors } from '@data/sponsors/platinumSponsors';
+import { goldSponsors } from '@data/sponsors/goldSponsors';
 
 const premiumSponsors = [...platinumSponsors, ...goldSponsors];
 
@@ -108,17 +109,7 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
         )}
       </article>
 
-      {/* Embedded Footer */}
-      <footer className="w-full border-t border-[#1a2624] bg-[#08100f] mt-auto">
-        <div className="max-w-[1920px] mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="font-display font-bold uppercase tracking-[0.2em] text-xs text-[#747373]">
-            &copy; {new Date().getFullYear()} Team Arion Racing.
-          </div>
-          <div className="font-body text-xs text-[#46484d] uppercase tracking-widest">
-            Kinetic Monolith Architecture.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
