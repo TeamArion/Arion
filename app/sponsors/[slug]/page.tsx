@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { platinumSponsors } from '@/data/sponsors/platinumSponsors';
-import { goldSponsors } from '@/data/sponsors/goldSponsors';
+import { platinumSponsors } from '@/app/data/sponsors/platinumSponsors';
+import { goldSponsors } from '@/app/data/sponsors/goldSponsors';
 
 const premiumSponsors = [...platinumSponsors, ...goldSponsors];
 

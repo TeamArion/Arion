@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RegularSponsor } from '@/data/sponsors/types';
+import { RegularSponsor } from '@/app/data/sponsors/types';
 
 interface Props {
   sponsor: RegularSponsor;

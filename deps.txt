@@ -1,0 +1,21 @@
+ta-website-finals@0.1.0 C:\Users\user\Desktop\TA-Website-Finals
++-- @emnapi/core@1.9.2 extraneous
++-- @emnapi/runtime@1.9.2 extraneous
++-- @emnapi/wasi-threads@1.2.1 extraneous
++-- @napi-rs/wasm-runtime@0.2.12 extraneous
++-- @tailwindcss/postcss@4.2.2
++-- @tybys/wasm-util@0.10.1 extraneous
++-- @types/node@20.19.39
++-- @types/react-dom@19.2.3
++-- @types/react@19.2.14
++-- babel-plugin-react-compiler@1.0.0
++-- eslint-config-next@16.2.2
++-- eslint@9.39.4
++-- framer-motion@12.38.0
++-- lucide-react@1.7.0
++-- next@16.2.2
++-- react-dom@19.2.4
++-- react@19.2.4
++-- tailwindcss@4.2.2
+`-- typescript@5.9.3
+

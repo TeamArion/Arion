@@ -1,4 +1,4 @@
-import { RegularSponsor } from '@/data/sponsors/types';
+import { RegularSponsor } from '@/app/data/sponsors/types';
 
 export const bronzeSponsors: RegularSponsor[] = [
   ...Array.from({ length: 11 }).map((_, i) => ({

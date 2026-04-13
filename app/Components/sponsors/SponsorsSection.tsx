@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { platinumSponsors } from '@/data/sponsors/platinumSponsors';
-import { goldSponsors } from '@/data/sponsors/goldSponsors';
-import { silverSponsors } from '@/data/sponsors/silverSponsors';
-import { bronzeSponsors } from '@/data/sponsors/bronzeSponsors';
+import { platinumSponsors } from '@/app/data/sponsors/platinumSponsors';
+import { goldSponsors } from '@/app/data/sponsors/goldSponsors';
+import { silverSponsors } from '@/app/data/sponsors/silverSponsors';
+import { bronzeSponsors } from '@/app/data/sponsors/bronzeSponsors';
 
-import PlatinumGoldCard from '@/app/components/sponsors/PlatinumGoldCard';
-import SilverSponsor from '@/app/components/sponsors/SilverSponsor';
-import BronzeSponsor from '@/app/components/sponsors/BronzeSponsor';
+import PlatinumGoldSponsor from '@/app/Components/sponsors/PlatinumGoldSponsor';
+import SilverSponsor from '@/app/Components/sponsors/SilverSponsor';
+import BronzeSponsor from '@/app/Components/sponsors/BronzeSponsor';
 
 export default function SponsorsSection() {
 
@@ -43,7 +43,7 @@ export default function SponsorsSection() {
         >
           {platinumSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
-              <PlatinumGoldCard sponsor={s} />
+              <PlatinumGoldSponsor sponsor={s} />
             </motion.div>
           ))}
         </motion.div>
@@ -64,7 +64,7 @@ export default function SponsorsSection() {
         >
           {goldSponsors.map(s => (
             <motion.div key={s.slug} variants={itemVariants} className="h-full">
-              <PlatinumGoldCard sponsor={s} />
+              <PlatinumGoldSponsor sponsor={s} />
             </motion.div>
           ))}
         </motion.div>

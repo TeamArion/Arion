@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import SponsorsSection from '@/app/components/sponsors/SponsorsSection';
+import SponsorsSection from '@/app/Components/sponsors/SponsorsSection';
 
 export const metadata: Metadata = {
   title: 'Sponsors | Team Arion Racing',

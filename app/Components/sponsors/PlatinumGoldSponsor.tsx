@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { PremiumSponsor } from '@/data/sponsors/types';
+import { PremiumSponsor } from '@/app/data/sponsors/types';
 
 interface Props {
   sponsor: PremiumSponsor;
 }
 
-export default function PlatinumGoldCard({ sponsor }: Props) {
+export default function PlatinumGoldSponsor({ sponsor }: Props) {
   // Plat: larger card, Gold: standard. We can let the parent grid handle sizing.
   // The card respects the kinetic monolith "0px" border radius and strict borders.
 
