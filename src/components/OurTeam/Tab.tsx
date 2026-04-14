@@ -14,11 +14,12 @@ interface TabsProps {
 }
 
 const tabs: TabOption[] = [
-  { id: "executive", label: "Executive Committee" },
-  { id: "heads", label: "Heads of Subsystems" },
+  { id: "executive", label: "Exec Committee" },
+  { id: "heads", label: "Subsystem Heads" },
+  { id: "design", label: "Design Team" },
   { id: "engineers", label: "Engineers" },
   { id: "business", label: "Business Team" },
-  { id: "marketing", label: "Marketing Team" },
+  { id: "media", label: "Media Team" },
 ];
 
 export default function Tabs({ activeTab, setActiveTab }: TabsProps) {
