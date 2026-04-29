@@ -1,6 +1,6 @@
 "use client";
 
-import InteractiveBentoGallery from "@/components/gallery/PhotoGrid";
+import PhotoGrid from "@/components/gallery/PhotoGrid";
 import GalleryHero from "@/components/gallery/GalleryHero";
 import SectionHeader from "@/components/gallery/SectionHeader";
 import GalleryNavigation from "@/components/gallery/GalleryNavigation";
@@ -81,7 +81,7 @@ export default function GalleryPage() {
              tagline="Unified data stream // Total access"
              className="mb-20"
           />
-          <InteractiveBentoGallery mediaItems={mediaItems} />
+          <PhotoGrid mediaItems={mediaItems} />
         </div>
       </section>
     </div>

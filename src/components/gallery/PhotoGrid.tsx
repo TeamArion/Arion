@@ -58,7 +58,7 @@ const MediaItem = ({ item }: { item: MediaItemType }) => {
   );
 };
 
-const InteractiveBentoGallery = ({
+const PhotoGrid = ({
   mediaItems,
 }: {
   mediaItems: MediaItemType[];
@@ -126,4 +126,4 @@ const InteractiveBentoGallery = ({
   );
 };
 
-export default InteractiveBentoGallery;
+export default PhotoGrid;
