@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import "@/app/globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import "./globals.css";
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-inter", // optional (useful for Tailwind)
 });
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-});
-
 
 export const metadata: Metadata = {
   title: "Team Arion | Electric Racing",
@@ -30,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${inter.className} antialiased min-h-screen flex flex-col bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container`}
+        className={`${inter.className} antialiased min-h-screen flex flex-col bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container`}
       >
         <Navbar />
         <main className="flex-grow w-full pt-0">{children}</main>
