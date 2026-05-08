@@ -91,8 +91,8 @@ export default function SponsorClientPage() {
             variants={fadeIn}
             className="flex items-center gap-4 mb-8 justify-center md:justify-start"
           >
-            <span className="h-[1px] w-12 bg-primary"></span>
-            <h2 className="font-display font-bold text-xs tracking-[0.3em] text-primary uppercase">Platinum Sponsor</h2>
+            <span className="h-[2px] w-[70px] md:w-[90px] bg-gradient-to-r from-white/90 to-transparent shadow-[0_0_10px_rgba(255,255,255,0.6)]"></span>
+            <h2 className="font-display font-bold text-sm md:text-base tracking-[0.4em] text-white/90 uppercase drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">Platinum Sponsor</h2>
           </motion.div>
           
           {platinumSponsor && (
