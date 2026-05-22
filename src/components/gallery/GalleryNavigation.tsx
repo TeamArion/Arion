@@ -28,7 +28,7 @@ export default function GalleryNavigation() {
         </Link>
 
         <div className="lg:col-span-4 flex flex-col gap-8">
-          <Link href="/gallery/formula-bharat-2026" className="flex-1 block outline-none group">
+          <Link href="/gallery/formula-bharat" className="flex-1 block outline-none group">
             <motion.div 
               whileHover={{ scale: 1.02, y: -5 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
