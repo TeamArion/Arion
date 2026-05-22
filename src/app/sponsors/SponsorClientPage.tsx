@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { sponsors, Sponsor } from "@/lib/data/sponsors";
 import SponsorCard from "@/components/sponsors/SponsorCard";
-import SponsorSlider from "@/components/sponsors/SponsorSlider";
 import SponsorModal from "@/components/sponsors/SponsorModal";
 
 const fadeIn = {
@@ -91,8 +90,8 @@ export default function SponsorClientPage() {
             variants={fadeIn}
             className="flex items-center gap-4 mb-8 justify-center md:justify-start"
           >
-            <span className="h-[2px] w-[70px] md:w-[90px] bg-gradient-to-r from-white/90 to-transparent shadow-[0_0_10px_rgba(255,255,255,0.6)]"></span>
-            <h2 className="font-display font-bold text-sm md:text-base tracking-[0.4em] text-white/90 uppercase drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">Platinum Sponsor</h2>
+            <span className="h-[2px] w-[70px] md:w-[90px] bg-gradient-to-r from-primary/90 to-transparent shadow-[0_0_10px_rgba(11,234,224,0.6)]"></span>
+            <h2 className="font-display font-bold text-sm md:text-base tracking-[0.4em] text-primary/90 uppercase drop-shadow-[0_0_8px_rgba(11,234,224,0.3)]">Platinum Sponsor</h2>
           </motion.div>
           
           {platinumSponsor && (
@@ -119,7 +118,7 @@ export default function SponsorClientPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {goldSponsors.map(sponsor => (
                <div key={sponsor.slug} className="h-full">
-                  <SponsorCard sponsor={sponsor} />
+                  <SponsorCard sponsor={sponsor} onClick={setSelectedSponsor} />
                </div>
             ))}
           </div>
@@ -135,8 +134,8 @@ export default function SponsorClientPage() {
             variants={fadeIn}
             className="flex items-center gap-4 mb-8 justify-center md:justify-start"
           >
-            <span className="h-[1px] w-12 bg-white"></span>
-            <h2 className="font-display font-bold text-xs tracking-[0.3em] text-white uppercase">Silver Sponsors</h2>
+            <span className="h-[1px] w-12 bg-primary"></span>
+            <h2 className="font-display font-bold text-xs tracking-[0.3em] text-primary uppercase">Silver Sponsors</h2>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -158,8 +157,8 @@ export default function SponsorClientPage() {
              variants={fadeIn}
              className="flex items-center gap-4 mb-8 justify-center md:justify-start"
           >
-            <span className="h-[1px] w-12 bg-white/50"></span>
-            <h2 className="font-display font-bold text-xs tracking-[0.3em] text-white/50 uppercase">Bronze Sponsors</h2>
+            <span className="h-[1px] w-12 bg-primary/50"></span>
+            <h2 className="font-display font-bold text-xs tracking-[0.3em] text-primary/50 uppercase">Bronze Sponsors</h2>
           </motion.div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
@@ -171,9 +170,6 @@ export default function SponsorClientPage() {
           </div>
         </div>
       </section>
-
-      {/* Infinite Logo Slider */}
-      <SponsorSlider sponsors={sponsors} />
 
       {/* Partnership CTA Section */}
       <section className="py-32 bg-[#08100f] relative overflow-hidden border-t border-primary/20">

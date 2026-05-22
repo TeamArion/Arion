@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const sponsor = sponsors.find((s) => s.slug === params.slug);
   
-  if (!sponsor) {
+  if (!sponsor || sponsor.tier !== "Platinum") {
     return {
       title: "Sponsor Not Found",
     };
@@ -25,10 +25,9 @@ export default function SponsorDetailPage({ params }: { params: { slug: string }
     notFound();
   }
 
-  // Double check the tier so people don't manually type silver/bronze slugs
-  if (sponsor.tier !== "Platinum" && sponsor.tier !== "Gold") {
-    // Silver and bronze don't get dedicated pages per requirements, they get modals.
-    // Redirect to sponsors? Let's just 404.
+  // Double check the tier so people don't manually type other tiers
+  if (sponsor.tier !== "Platinum") {
+    // Only Platinum gets dedicated pages, others get modals.
     notFound(); 
   }
 
