@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 
   return {
     title: `${sponsor.name} | Sponsors | Team Arion Racing`,
-    description: sponsor.description.substring(0, 160),
+    description: sponsor.description?.substring(0, 160) ?? "",
   };
 }
 
