@@ -46,14 +46,6 @@ export default function Hero() {
               OUR BROCHURE
             </span>
           </Link>
-          <Link
-            href="/sponsors#platinum"
-            className="group inline-flex items-center justify-center px-8 py-3 bg-[#0BEAE0] text-black hover:bg-white transition-all rounded-sm"
-          >
-            <span className="font-body font-semibold text-sm md:text-base tracking-[0.2em] uppercase">
-              MEET OUR PARTNERS
-            </span>
-          </Link>
         </div>
       </div>
 
