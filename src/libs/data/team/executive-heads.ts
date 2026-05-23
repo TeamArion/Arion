@@ -46,6 +46,17 @@ export const executiveHeads: TeamMember[] = [
     domain: "Subsystem Directives"
   },
   {
+    id: "hos-inventory-1",
+    name: "Vikrama Adithya",
+    role: "Head of Inventory",
+    focus: "Inventory Management",
+    image: placeholderImage,
+    experience: "3 Seasons",
+    category: "heads",
+    department: "Inventory",
+    domain: "Subsystem Directives"
+  },
+  {
     id: "hos-aero-1",
     name: "Anantha Raman",
     role: "Head of Aerodynamics",
@@ -56,6 +67,7 @@ export const executiveHeads: TeamMember[] = [
     department: "Aerodynamics",
     domain: "Subsystem Directives"
   },
+
   {
     id: "hos-powertrain-1",
     name: "Pranith M",
