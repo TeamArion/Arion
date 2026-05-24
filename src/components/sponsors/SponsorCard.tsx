@@ -17,6 +17,7 @@ interface TierStyles {
   text: string;
   underline: string;
   badgeGlow: string;
+  logoGlow: string;
 }
 
 const tierStyles: Record<Sponsor["tier"], TierStyles> = {
@@ -28,6 +29,7 @@ const tierStyles: Record<Sponsor["tier"], TierStyles> = {
     text: "text-violet-400",
     underline: "bg-violet-500",
     badgeGlow: "shadow-[0_0_15px_rgba(168,85,247,0.3)]",
+    logoGlow: "bg-purple-500/15",
   },
   Gold: {
     border: "border-yellow-500/20",
@@ -37,6 +39,7 @@ const tierStyles: Record<Sponsor["tier"], TierStyles> = {
     text: "text-yellow-500",
     underline: "bg-yellow-500",
     badgeGlow: "shadow-[0_0_15px_rgba(234,179,8,0.3)]",
+    logoGlow: "bg-amber-500/15",
   },
   Silver: {
     border: "border-slate-300/20",
@@ -46,6 +49,7 @@ const tierStyles: Record<Sponsor["tier"], TierStyles> = {
     text: "text-slate-300",
     underline: "bg-slate-300",
     badgeGlow: "shadow-[0_0_15px_rgba(226,232,240,0.2)]",
+    logoGlow: "bg-slate-400/15",
   },
   Bronze: {
     border: "border-primary/20",
@@ -55,6 +59,7 @@ const tierStyles: Record<Sponsor["tier"], TierStyles> = {
     text: "text-primary",
     underline: "bg-primary",
     badgeGlow: "shadow-[0_0_15px_rgba(11,234,224,0.3)]",
+    logoGlow: "bg-orange-500/15",
   },
 };
 
@@ -75,18 +80,19 @@ export default function SponsorCard({ sponsor, onClick }: SponsorCardProps) {
 
       <div className="flex-1 flex flex-col items-center w-full relative z-10">
         {/* Fixed Logo Area Container */}
-        <div className={`w-full flex items-center justify-center mb-6 shrink-0 ${sponsor.tier === 'Platinum' ? 'h-48 md:h-56' : 'h-32 md:h-40'}`}>
-          {/* Logo Circle */}
-          <div className={`rounded-full bg-surface border ${styles.border} ${styles.hoverBorder} flex items-center justify-center overflow-hidden relative shrink-0 transition-all duration-500 ${sponsor.tier === 'Platinum' ? 'w-48 h-48 md:w-56 md:h-56' : 'w-32 h-32 md:w-40 md:h-40'}`}>
+        <div className={`w-full relative flex items-center justify-center mb-6 shrink-0 ${sponsor.tier === 'Platinum' ? 'h-48 md:h-56' : 'h-32 md:h-40'}`}>
+          {/* Subtle Tier-Colored Glow */}
+          <div className={`absolute inset-0 blur-3xl ${styles.logoGlow} rounded-full`} />
+          
+          {/* Logo Content */}
+          <div className="relative w-full h-full flex items-center justify-center z-10 p-2 md:p-4">
             {isImageLogo ? (
-              <div className="relative w-full h-full p-6 md:p-8">
-                <Image 
-                  src={sponsor.logo} 
-                  alt={`${sponsor.name} logo`}
-                  fill
-                  className="object-contain grayscale group-hover:grayscale-0 transition-all duration-500 scale-95 group-hover:scale-105"
-                />
-              </div>
+              <Image 
+                src={sponsor.logo} 
+                alt={`${sponsor.name} logo`}
+                fill
+                className="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 scale-95 group-hover:scale-105"
+              />
             ) : (
               <span className="font-display font-black text-4xl text-outline-variant group-hover:text-white transition-colors duration-500 grayscale group-hover:grayscale-0 scale-95 group-hover:scale-105">
                 {sponsor.logo}

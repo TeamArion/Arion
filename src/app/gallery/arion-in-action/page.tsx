@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import GalleryHero from "@/components/gallery/GalleryHero";
 import SectionHeader from "@/components/gallery/SectionHeader";
 import FeaturedMomentCard from "@/components/gallery/FeaturedMomentCard";
@@ -7,29 +8,115 @@ import PhotoGrid from "@/components/gallery/PhotoGrid";
 import VideoGallery from "@/components/gallery/VideoGallery";
 import AlbumCard from "@/components/gallery/AlbumCard";
 import BackToGallery from "@/components/gallery/BackToGallery";
+import { supabase } from "@/lib/supabase";
 
 import {
-  getFeaturedMoments,
-  getMediaItems,
-  getVideoHighlights,
-  getAlbums,
-} from "@/libs/data/gallery/arion-in-action";
+  getFeaturedMoments as fallbackFeatured,
+  getMediaItems as fallbackMediaItems,
+  getVideoHighlights as fallbackVideos,
+  getAlbums as fallbackAlbums,
+} from "@/lib/data/gallery/arion-in-action";
+import { FeaturedMoment, VideoItem, Album } from "@/types/media";
 
 export default function ArionInActionPage() {
-  const featuredMoments = getFeaturedMoments();
-  const mediaItems = getMediaItems();
-  const videos = getVideoHighlights();
-  const albums = getAlbums();
+  const [featuredMoments, setFeaturedMoments] = useState<FeaturedMoment[]>([]);
+  const [gridItems, setGridItems] = useState<any[]>([]);
+  const [videos, setVideos] = useState<VideoItem[]>([]);
+  const [albums, setAlbums] = useState<Album[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Transform MediaItem[] to the shape PhotoGrid expects
-  const gridItems = mediaItems.map((item, i) => ({
-    id: i + 1,
-    type: item.mediaType === "video" ? "video" : "image",
-    title: item.title,
-    desc: item.description || "",
-    url: item.mediaUrl,
-    span: getGridSpan(i),
-  }));
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const { data, error } = await supabase
+          .from("gallery_media")
+          .select("*")
+          .order("display_order", { ascending: true });
+
+        const aiaMedia = data ? data.filter((item: any) => item.tag && item.tag.startsWith("AiA")) : [];
+
+        if (aiaMedia.length > 0) {
+          const imageMedia = aiaMedia.filter((item: any) => item.type === "IMAGE");
+          const videoMedia = aiaMedia.filter((item: any) => item.type === "VIDEO");
+
+          const mappedFeatured = imageMedia.slice(0, 4).map((item: any) => ({
+            id: item.id.toString(),
+            title: item.title,
+            description: item.description || `Milestone details for ${item.title}.`,
+            imageUrl: item.media_url,
+            date: item.created_at ? item.created_at.split("T")[0] : "2025-08-15",
+            category: "Milestone",
+          }));
+
+          const mappedGrid = imageMedia.slice(4).map((item: any, idx: number) => ({
+            id: idx + 1,
+            type: "image" as const,
+            title: item.title,
+            desc: item.description || "",
+            url: item.media_url,
+            span: getGridSpan(idx),
+          }));
+
+          const mappedVideos = videoMedia.map((item: any) => ({
+            id: item.id.toString(),
+            title: item.title,
+            description: item.description || "Video highlight of the build and testing.",
+            thumbnailUrl: "/images/Car_1.jpeg",
+            videoUrl: item.media_url,
+            duration: "2:00",
+            category: "Highlight",
+          }));
+
+          setFeaturedMoments(mappedFeatured.length > 0 ? mappedFeatured : fallbackFeatured());
+          setGridItems(
+            mappedGrid.length > 0
+              ? mappedGrid
+              : fallbackMediaItems().map((item, i) => ({
+                  id: i + 1,
+                  type: item.mediaType === "video" ? ("video" as const) : ("image" as const),
+                  title: item.title,
+                  desc: item.description || "",
+                  url: item.mediaUrl,
+                  span: getGridSpan(i),
+                }))
+          );
+          setVideos(mappedVideos.length > 0 ? mappedVideos : fallbackVideos());
+        } else {
+          setFeaturedMoments(fallbackFeatured());
+          setGridItems(
+            fallbackMediaItems().map((item, i) => ({
+              id: i + 1,
+              type: item.mediaType === "video" ? ("video" as const) : ("image" as const),
+              title: item.title,
+              desc: item.description || "",
+              url: item.mediaUrl,
+              span: getGridSpan(i),
+            }))
+          );
+          setVideos(fallbackVideos());
+        }
+        setAlbums(fallbackAlbums());
+      } catch (err) {
+        console.error("Error loading Arion in Action gallery:", err);
+        setFeaturedMoments(fallbackFeatured());
+        setGridItems(
+          fallbackMediaItems().map((item, i) => ({
+            id: i + 1,
+            type: item.mediaType === "video" ? ("video" as const) : ("image" as const),
+            title: item.title,
+            desc: item.description || "",
+            url: item.mediaUrl,
+            span: getGridSpan(i),
+          }))
+        );
+        setVideos(fallbackVideos());
+        setAlbums(fallbackAlbums());
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   return (
     <div className="font-sans min-h-screen bg-black text-white">

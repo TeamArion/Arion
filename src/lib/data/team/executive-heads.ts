@@ -7,20 +7,23 @@ export const executiveHeads: TeamMember[] = [
     name: "D Jayanth",
     role: "Team Captain",
     focus: "Overall Leadership",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Jayanth.png",
     category: "executive",
     department: "Executive Committee",
-    domain: "Strategic Direction"
+    domain: "Strategic Direction",
+    imageRotation: -90,
   },
   {
     id: "exec-2",
     name: "Rishi Nikhil",
     role: "Chief Engineer",
     focus: "Technical Direction",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Rishi%20NIkhil.png",
     category: "executive",
     department: "Executive Committee",
-    domain: "Performance Orchestration"
+    domain: "Performance Orchestration",
   },
   // Department Heads
   {
@@ -28,44 +31,50 @@ export const executiveHeads: TeamMember[] = [
     name: "Aditya Satwik",
     role: "Head of Chassis",
     focus: "Structural Integrity & Design Optimization",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBGaAUZFib8e68JQX6OgQ30dx4D6upjc2FwVomgsbnj9hbkyINhgzZo-MJ8poqldxbTfr6sDYkAoHDau4VD7xV_WkR9JfQFjh90C6EvDu3Ym25p2IxIsc4Ge7L2tFklq4Sixn3silpApG6d9z9HocRV5kYZ86erecjCE7-faltvWYlBJwsjEtWyG-RMc_xA0FIx4voiVENB5i9fWRJp5zr77B8gWxAyVUVdP3ZeZaaUeWMwN4IJleT_W4Pp3yZ1NGAcNSld2mVnvrPA",
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Aditya_Satwik.png",
     experience: "4 Seasons",
     category: "heads",
     department: "Chassis",
-    domain: "Subsystem Directives"
+    imageRotation: -90,
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-electricals-1",
     name: "Shalom Mascarenhas",
     role: "Head of Electricals",
     focus: "Systems Integration & DAQ",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Shalom.png",
     experience: "3 Seasons",
     category: "heads",
     department: "Electricals",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-inventory-1",
-    name: "Vikrama Adithya",
+    name: "Vikram Adithya",
     role: "Head of Inventory",
     focus: "Inventory Management",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Vikram.png",
     experience: "3 Seasons",
     category: "heads",
     department: "Inventory",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-aero-1",
     name: "Anantha Raman",
     role: "Head of Aerodynamics",
     focus: "CFD & Wind Tunnel Data",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Anantha.png",
+    imageRotation: -90,
     experience: "3 Seasons",
     category: "heads",
     department: "Aerodynamics",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
 
   {
@@ -73,76 +82,85 @@ export const executiveHeads: TeamMember[] = [
     name: "Pranith M",
     role: "Head of Powertrain",
     focus: "Electric Thrust & Accumulator",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Pranith.png",
     experience: "4 Seasons",
+    imageRotation: -90,
     category: "heads",
     department: "Powertrain",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-vd-1",
     name: "Achyuta Raman",
     role: "Head of Vehicle Dynamics",
     focus: "Kinematics & Suspension",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Achyutha.png",
     experience: "4 Seasons",
+    imageRotation: -90,
     category: "heads",
     department: "Vehicle Dynamics",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-bm-1",
-    name: "Aditya Verghese",
+    name: "Aditya Verghese Cherian",
     role: "Business & Management Head",
     focus: "Strategic Directives",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Aditya%20VC.png",
     experience: "4 Seasons",
     category: "heads",
     department: "Business & Management",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-bm-2",
     name: "Eeshna Bharadwaj",
     role: "Sponsorship Head",
     focus: "Corporate Partnerships",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Eeshna.png",
     experience: "3 Seasons",
     category: "heads",
     department: "Business & Management",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-bm-3",
     name: "Ananya V",
     role: "Operations Head",
     focus: "Logistics",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Ananya.png",
     experience: "3 Seasons",
     category: "heads",
     department: "Business & Management",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-bm-4",
     name: "Arav Kumar Sinha",
     role: "Finance Head",
     focus: "Capital Efficiency",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Arav.png",
     experience: "3 Seasons",
     category: "heads",
     department: "Business & Management",
-    domain: "Subsystem Directives"
+    domain: "Subsystem Directives",
   },
   {
     id: "hos-media-1",
     name: "Param Khandelwal",
-    role: "Head of Media",
+    role: "Media & Marketing Head",
     focus: "Visual Architecture",
-    image: placeholderImage,
+    image:
+      "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Param.png",
     experience: "3 Seasons",
     category: "heads",
     department: "Media & Marketing",
-    domain: "Subsystem Directives"
-  }
+    domain: "Subsystem Directives",
+  },
 ];

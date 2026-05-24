@@ -178,8 +178,11 @@ export default function SponsorShowcasePage({ data }: SponsorShowcasePageProps) 
 
             {/* Instagram Embed */}
             <InstagramPost
-              postUrl={instagramPostUrl}
+              type="post"
+              mediaUrl={logoImage || "/images/Car_1.jpeg"}
               caption={`${sponsor.name} × Team Arion Racing`}
+              likes={154}
+              comments={12}
             />
           </div>
         </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
-import { TeamMember } from "@/libs/data/team-roster";
+import { TeamMember } from "@/lib/data/team-roster";
 import { useRef } from "react";
 
 const ROTATION_RANGE = 20;

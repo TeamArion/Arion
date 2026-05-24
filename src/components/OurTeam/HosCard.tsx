@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
-import { TeamMember } from "@/libs/data/team-roster";
+import { TeamMember } from "@/lib/data/team-roster";
 import { useRef } from "react";
 
 const ROTATION_RANGE = 20;
@@ -61,7 +61,12 @@ export default function HosCard({ member }: { member: TeamMember }) {
       >
         <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-2 border-[#0beae0]/50 p-1 bg-[#08100f] group-hover:border-[#0beae0] transition-colors group-hover:shadow-[0_0_20px_rgba(11,234,224,0.3)]">
           <motion.img
-            whileHover={{ scale: 1.1 }}
+            initial={{ rotate: member.imageRotation || 0 }}
+            animate={{ rotate: member.imageRotation || 0 }}
+            whileHover={{ 
+              scale: 1.1,
+              rotate: member.imageRotation || 0
+            }}
             transition={{ duration: 0.4 }}
             src={member.image}
             alt={member.name}

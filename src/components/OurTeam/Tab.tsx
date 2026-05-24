@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TeamCategory } from "@/libs/data/team-roster";
+import { TeamCategory } from "@/lib/data/team-roster";
 
 interface TabOption {
   id: TeamCategory;
@@ -14,6 +14,7 @@ interface TabsProps {
 }
 
 const tabs: TabOption[] = [
+  { id: "advisor", label: "Faculty Advisor" },
   { id: "executive", label: "Exec Committee" },
   { id: "heads", label: "Subsystem Heads" },
   { id: "design", label: "Design Team" },

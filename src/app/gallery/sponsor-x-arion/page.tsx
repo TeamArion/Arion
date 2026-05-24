@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import GalleryHero from "@/components/gallery/GalleryHero";
@@ -9,27 +10,97 @@ import LinkedInCTA from "@/components/gallery/LinkedInCTA";
 import PhotoGrid from "@/components/gallery/PhotoGrid";
 import VideoGallery from "@/components/gallery/VideoGallery";
 import BackToGallery from "@/components/gallery/BackToGallery";
+import { supabase } from "@/lib/supabase";
 
 import {
   getInstagramPosts,
-  getSponsorMedia,
-  getSponsorVideos,
-} from "@/libs/data/gallery/sponsor-x-arion";
+  getSponsorMedia as fallbackSponsorMedia,
+  getSponsorVideos as fallbackVideos,
+} from "@/lib/data/gallery/sponsor-x-arion";
 
 export default function SponsorXArionPage() {
-  const instagramPosts = getInstagramPosts();
-  const sponsorMedia = getSponsorMedia();
-  const videos = getSponsorVideos();
+  const [gridItems, setGridItems] = useState<any[]>([]);
+  const [videos, setVideos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // Transform for PhotoGrid
-  const gridItems = sponsorMedia.map((item, i) => ({
-    id: i + 1,
-    type: item.mediaType === "video" ? "video" : "image",
-    title: item.title,
-    desc: item.description || "",
-    url: item.mediaUrl,
-    span: getGridSpan(i),
-  }));
+  const instagramPosts = getInstagramPosts();
+  const fallbackMedia = fallbackSponsorMedia();
+  const fallbackVids = fallbackVideos();
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const { data, error } = await supabase
+          .from("gallery_media")
+          .select("*")
+          .order("display_order", { ascending: true });
+
+        const sponsorMedia = data ? data.filter((item: any) => item.tag === "Sponsor_Posts") : [];
+
+        if (sponsorMedia.length > 0) {
+          const images = sponsorMedia.filter((item: any) => item.type === "IMAGE");
+          const videoList = sponsorMedia.filter((item: any) => item.type === "VIDEO");
+
+          const mappedGrid = images.map((item: any, idx: number) => ({
+            id: idx + 1,
+            type: "image" as const,
+            title: item.title,
+            desc: item.description || "",
+            url: item.media_url,
+            span: getGridSpan(idx),
+          }));
+
+          const mappedVideos = videoList.map((item: any) => ({
+            id: item.id.toString(),
+            title: item.title,
+            description: item.description || "Sponsor collaboration showcase.",
+            thumbnailUrl: "/images/Car_1.jpeg",
+            videoUrl: item.media_url,
+            duration: "1:30",
+            category: "Collaboration",
+          }));
+
+          setGridItems(mappedGrid.length > 0 ? mappedGrid : fallbackMedia.map((item, i) => ({
+            id: i + 1,
+            type: item.mediaType === "video" ? "video" : "image",
+            title: item.title,
+            desc: item.description || "",
+            url: item.mediaUrl,
+            span: getGridSpan(i),
+          })));
+          setVideos(mappedVideos.length > 0 ? mappedVideos : fallbackVids);
+        } else {
+          setGridItems(
+            fallbackMedia.map((item, i) => ({
+              id: i + 1,
+              type: item.mediaType === "video" ? "video" : "image",
+              title: item.title,
+              desc: item.description || "",
+              url: item.mediaUrl,
+              span: getGridSpan(i),
+            }))
+          );
+          setVideos(fallbackVids);
+        }
+      } catch (err) {
+        console.error("Error loading Sponsor x Arion gallery:", err);
+        setGridItems(
+          fallbackMedia.map((item, i) => ({
+            id: i + 1,
+            type: item.mediaType === "video" ? "video" : "image",
+            title: item.title,
+            desc: item.description || "",
+            url: item.mediaUrl,
+            span: getGridSpan(i),
+          }))
+        );
+        setVideos(fallbackVids);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   return (
     <div className="font-sans min-h-screen bg-black text-white">

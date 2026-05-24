@@ -1,61 +1,109 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import PhotoGrid from "@/components/gallery/PhotoGrid";
 import GalleryHero from "@/components/gallery/GalleryHero";
 import SectionHeader from "@/components/gallery/SectionHeader";
 import GalleryNavigation from "@/components/gallery/GalleryNavigation";
+import { supabase } from "@/lib/supabase";
+
+const fallbackMediaItems = [
+  {
+    id: 1,
+    type: "video",
+    title: "Endurance Reel",
+    desc: "Sponsor visibility during endurance",
+    url: "/videos/car_video.mp4",
+    span: "md:col-span-3 md:row-span-3 col-span-2",
+  },
+  {
+    id: 2,
+    type: "image",
+    title: "Grid Lineup",
+    desc: "Race lineup moment",
+    url: "/images/Car_1.jpeg",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    id: 3,
+    type: "video",
+    title: "Pit Action",
+    desc: "Team in action",
+    url: "/videos/car_video.mp4",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    id: 4,
+    type: "image",
+    title: "Aero Detail",
+    desc: "Engineering focus",
+    url: "/images/Car_1.jpeg",
+    span: "md:col-span-1 md:row-span-3",
+  },
+  {
+    id: 5,
+    type: "image",
+    title: "Team Moment",
+    desc: "Crew performance",
+    url: "/images/Car_1.jpeg",
+    span: "md:col-span-2 md:row-span-2",
+  },
+  {
+    id: 6,
+    type: "video",
+    title: "Track Run",
+    desc: "High speed testing",
+    url: "/videos/car_video.mp4",
+    span: "md:col-span-2 md:row-span-2",
+  },
+];
+
+function getGridSpan(index: number): string {
+  const spans = [
+    "md:col-span-3 md:row-span-3 col-span-2",
+    "md:col-span-2 md:row-span-2",
+    "md:col-span-2 md:row-span-2",
+    "md:col-span-1 md:row-span-3",
+    "md:col-span-2 md:row-span-2",
+    "md:col-span-2 md:row-span-2",
+  ];
+  return spans[index % spans.length];
+}
 
 export default function GalleryPage() {
-  const mediaItems = [
-    {
-      id: 1,
-      type: "video",
-      title: "Endurance Reel",
-      desc: "Sponsor visibility during endurance",
-      url: "/videos/car_video.mp4",
-      span: "md:col-span-3 md:row-span-3 col-span-2",
-    },
-    {
-      id: 2,
-      type: "image",
-      title: "Grid Lineup",
-      desc: "Race lineup moment",
-      url: "/images/Car_1.jpeg",
-      span: "md:col-span-2 md:row-span-2",
-    },
-    {
-      id: 3,
-      type: "video",
-      title: "Pit Action",
-      desc: "Team in action",
-      url: "/videos/car_video.mp4",
-      span: "md:col-span-2 md:row-span-2",
-    },
-    {
-      id: 4,
-      type: "image",
-      title: "Aero Detail",
-      desc: "Engineering focus",
-      url: "/images/Car_1.jpeg",
-      span: "md:col-span-1 md:row-span-3",
-    },
-    {
-      id: 5,
-      type: "image",
-      title: "Team Moment",
-      desc: "Crew performance",
-      url: "/images/Car_1.jpeg",
-      span: "md:col-span-2 md:row-span-2",
-    },
-    {
-      id: 6,
-      type: "video",
-      title: "Track Run",
-      desc: "High speed testing",
-      url: "/videos/car_video.mp4",
-      span: "md:col-span-2 md:row-span-2",
-    },
-  ];
+  const [mediaItems, setMediaItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadGallery() {
+      try {
+        const { data, error } = await supabase
+          .from("gallery_media")
+          .select("*")
+          .order("display_order", { ascending: true });
+
+        if (data && data.length > 0) {
+          const mapped = data.map((item: any, idx: number) => ({
+            id: item.id,
+            type: (item.type || "IMAGE").toLowerCase(),
+            title: item.title,
+            desc: item.tag || "",
+            url: item.media_url,
+            span: getGridSpan(idx),
+          }));
+          setMediaItems(mapped);
+        } else {
+          setMediaItems(fallbackMediaItems);
+        }
+      } catch (err) {
+        console.error("Error loading gallery media:", err);
+        setMediaItems(fallbackMediaItems);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadGallery();
+  }, []);
 
   return (
     <div className="font-sans min-h-screen bg-black text-white">

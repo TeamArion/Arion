@@ -12,7 +12,8 @@ import BackToGallery from "@/components/gallery/BackToGallery";
 import {
   getCompetitionMedia,
   getCompetitionInstagramPosts,
-} from "@/libs/data/gallery/formula-bharat";
+} from "@/lib/data/gallery/formula-bharat";
+import { supabase } from "@/lib/supabase";
 
 /** Animated counter hook — counts from 0 to target when element is in view */
 function useAnimatedCounter(target: number, duration: number = 2000) {
@@ -60,18 +61,62 @@ function AnimatedStatCard({ label, value, isNumeric }: { label: string; value: s
 }
 
 export default function FormulaBharatPage() {
-  const media = getCompetitionMedia();
+  const [gridItems, setGridItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const fallbackMedia = getCompetitionMedia();
   const instagramPosts = getCompetitionInstagramPosts();
 
-  // Transform for PhotoGrid
-  const gridItems = media.map((item, i) => ({
-    id: i + 1,
-    type: item.mediaType === "video" ? "video" : "image",
-    title: item.title,
-    desc: item.description || "",
-    url: item.mediaUrl,
-    span: getGridSpan(i),
-  }));
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const { data, error } = await supabase
+          .from("gallery_media")
+          .select("*")
+          .order("display_order", { ascending: true });
+
+        const fbMedia = data ? data.filter((item: any) => item.tag && item.tag.startsWith("FB")) : [];
+
+        if (fbMedia.length > 0) {
+          const mapped = fbMedia.map((item: any, idx: number) => ({
+            id: idx + 1,
+            type: (item.type || "IMAGE").toLowerCase() === "video" ? "video" : "image",
+            title: item.title,
+            desc: item.description || "",
+            url: item.media_url,
+            span: getGridSpan(idx),
+          }));
+          setGridItems(mapped);
+        } else {
+          setGridItems(
+            fallbackMedia.map((item, i) => ({
+              id: i + 1,
+              type: item.mediaType === "video" ? "video" : "image",
+              title: item.title,
+              desc: item.description || "",
+              url: item.mediaUrl,
+              span: getGridSpan(i),
+            }))
+          );
+        }
+      } catch (err) {
+        console.error("Error loading Formula Bharat gallery:", err);
+        setGridItems(
+          fallbackMedia.map((item, i) => ({
+            id: i + 1,
+            type: item.mediaType === "video" ? "video" : "image",
+            title: item.title,
+            desc: item.description || "",
+            url: item.mediaUrl,
+            span: getGridSpan(i),
+          }))
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
 
   const statEntries = [
     { label: "Vehicle Name", value: "AR25", isNumeric: false },

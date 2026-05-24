@@ -18,7 +18,7 @@ export default function TeamPage() {
         <MentorSection />
 
 
-        {/* Hero Section */}
+      
         <section className="max-w-7xl mx-auto px-8 mb-24">
           <h1 className="font-display text-7xl md:text-9xl font-black uppercase tracking-tighter mb-4 leading-[0.9] text-white">
             OUR <span className="text-[#0beae0]">TEAM</span>

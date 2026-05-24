@@ -4,7 +4,7 @@ const gold: Sponsor[] = [
   {
   name: "Delhivery",
   slug: "delhivery",
-  logo: "D",
+  logo: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/Sponsor_Logo/DELHIVERY%20(White).png",
   tier: "Gold",
   description:
     "Delhivery is one of India’s largest integrated logistics companies, specializing in parcel delivery, freight, and supply chain services powered by technology-driven operations. As our Gold Sponsor, Delhivery supported us by handling transportation for competitions, ensuring our vehicle and equipment arrived safely and on time, allowing us to stay focused on performance.",
@@ -15,7 +15,7 @@ const gold: Sponsor[] = [
   {
   name: "Cooper Elevators",
   slug: "cooper-elevators",
-  logo: "C",
+  logo: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/Sponsor_Logo/Cooper%20Elevators.png",
   tier: "Gold",
   description:
     "Cooper Elevators is an Indian company providing safe, reliable, and cost-effective vertical mobility solutions for residential and commercial sectors. As our Gold Sponsor, their support helped us make key updates to our car, improving efficiency and overall performance during the competition.",

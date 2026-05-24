@@ -1,70 +1,78 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { FiInstagram, FiExternalLink } from "react-icons/fi";
+import React from 'react';
+import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal } from 'lucide-react';
 
 interface InstagramPostProps {
-  /** Full Instagram post URL, e.g. https://www.instagram.com/p/ABC123/ */
-  postUrl: string;
-  /** Optional caption below the embed */
-  caption?: string;
+  type: 'post' | 'reel';
+  mediaUrl: string;
+  caption: string;
+  likes: number;
+  comments: number;
+  username?: string;
+  avatarUrl?: string;
 }
 
-/**
- * Reusable Instagram post embed component.
- * Renders the official Instagram embed iframe via their oEmbed endpoint.
- * Can be used across any sponsor showcase or page.
- */
-export default function InstagramPost({ postUrl, caption }: InstagramPostProps) {
-  // Build the embed URL – Instagram supports /embed/ suffix on post URLs
-  const embedUrl = postUrl.endsWith("/")
-    ? `${postUrl}embed`
-    : `${postUrl}/embed`;
-
+export default function InstagramPost({
+  type,
+  mediaUrl,
+  caption,
+  likes,
+  comments,
+  username = "team_arion",
+  avatarUrl = "/next.svg"
+}: InstagramPostProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.1 }}
-      className="w-full flex flex-col items-center"
-    >
-      {/* Embed Container */}
-      <div className="relative w-full max-w-[540px] bg-[#151d1c]/60 border border-white/[0.06] rounded-2xl overflow-hidden shadow-2xl">
-        {/* Subtle top accent line */}
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+    <div className="flex flex-col w-full max-w-sm bg-[#050505] border border-white/10 rounded-xl overflow-hidden font-sans hover:shadow-[0_0_20px_rgba(0,255,255,0.1)] hover:border-primary/50 transition-all duration-300 group">
+      {/* Header */}
+      <div className="flex items-center justify-between p-3 border-b border-white/5">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-zinc-900 overflow-hidden flex items-center justify-center p-1 border border-primary/20">
+            <img src={avatarUrl} alt={username} className="w-full h-full object-contain invert" />
+          </div>
+          <span className="font-semibold text-sm text-white group-hover:text-primary transition-colors">{username}</span>
+        </div>
+        <MoreHorizontal className="w-5 h-5 text-zinc-500 cursor-pointer hover:text-white transition-colors" />
+      </div>
 
-        {/* Instagram iframe */}
-        <div className="relative w-full" style={{ paddingBottom: "125%" }}>
-          <iframe
-            src={embedUrl}
-            className="absolute inset-0 w-full h-full border-0"
-            allow="encrypted-media"
-            title="Instagram Post"
-            loading="lazy"
-          />
+      {/* Media */}
+      <div className="relative aspect-[4/5] bg-black overflow-hidden flex items-center justify-center group pointer-events-none">
+        {type === 'reel' ? (
+          <video src={mediaUrl} className="w-full h-full object-cover pointer-events-auto" autoPlay muted loop playsInline />
+        ) : (
+          <img src={mediaUrl} alt={caption} className="w-full h-full object-cover pointer-events-auto" />
+        )}
+        {type === 'reel' && (
+           <div className="absolute top-3 right-3 text-white drop-shadow-md z-10 bg-black/60 p-1.5 rounded-full border border-primary/30 backdrop-blur-md">
+              <svg aria-label="Reels" fill="currentColor" height="16" role="img" viewBox="0 0 24 24" width="16" className="text-primary">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.206 22.5 1.5 17.794 1.5 12S6.206 1.5 12 1.5 22.5 6.206 22.5 12 17.794 22.5 12 22.5zm5.564-10.9-7.5-4.5A.5.5 0 0 0 9 7.5v9a.5.5 0 0 0 .764.428l7.5-4.5a.5.5 0 0 0 0-.856z" fillRule="evenodd"></path>
+              </svg>
+           </div>
+        )}
+      </div>
+
+      {/* Actions */}
+      <div className="flex flex-col p-4 gap-3 bg-gradient-to-b from-[#050505] to-black">
+        <div className="flex justify-between items-center text-white">
+          <div className="flex gap-4">
+            <Heart className="w-6 h-6 hover:text-primary cursor-pointer transition-colors" />
+            <MessageCircle className="w-6 h-6 hover:text-primary cursor-pointer transition-colors" />
+            <Send className="w-6 h-6 hover:text-primary cursor-pointer transition-colors" />
+          </div>
+          <Bookmark className="w-6 h-6 hover:text-primary cursor-pointer transition-colors" />
+        </div>
+        
+        <div className="font-semibold text-sm text-white">
+          {likes.toLocaleString()} <span className="text-zinc-500 font-normal">likes</span>
+        </div>
+
+        <div className="text-sm text-white/90 line-clamp-2 hover:line-clamp-none transition-all">
+          <span className="font-semibold mr-2 text-primary">{username}</span>
+          {caption}
+        </div>
+
+        <div className="text-xs text-zinc-500 cursor-pointer hover:text-primary transition-colors uppercase tracking-wider font-medium">
+          View all {comments.toLocaleString()} comments
         </div>
       </div>
-
-      {/* Caption & External Link */}
-      <div className="mt-6 flex flex-col items-center gap-4">
-        {caption && (
-          <p className="text-white/40 text-sm font-body tracking-wide text-center max-w-md">
-            {caption}
-          </p>
-        )}
-
-        <a
-          href={postUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-primary/70 hover:text-primary text-xs font-display font-bold uppercase tracking-[0.15em] transition-colors duration-300 group"
-        >
-          <FiInstagram size={14} className="group-hover:scale-110 transition-transform" />
-          View on Instagram
-          <FiExternalLink size={12} className="opacity-50 group-hover:opacity-100 transition-opacity" />
-        </a>
-      </div>
-    </motion.div>
+    </div>
   );
 }

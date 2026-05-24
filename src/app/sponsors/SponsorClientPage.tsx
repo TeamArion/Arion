@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { sponsors, Sponsor } from "@/lib/data/sponsors";
+import { sponsors as fallbackSponsors, Sponsor } from "@/lib/data/sponsors";
 import SponsorCard from "@/components/sponsors/SponsorCard";
 import SponsorModal from "@/components/sponsors/SponsorModal";
+import { supabase } from "@/lib/supabase";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -14,6 +15,42 @@ const fadeIn = {
 
 export default function SponsorClientPage() {
   const [selectedSponsor, setSelectedSponsor] = useState<Sponsor | null>(null);
+  const [sponsors, setSponsors] = useState<Sponsor[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadSponsors() {
+      try {
+        const { data, error } = await supabase
+          .from("sponsors")
+          .select("*")
+          .order("display_order", { ascending: true });
+
+        if (data && data.length > 0) {
+          const getSlug = (name: string) => name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          const mapped = data.map((s: any) => ({
+            name: s.name,
+            slug: getSlug(s.name),
+            logo: s.logo_url,
+            tier: s.tier === "TITLE" ? "Platinum" : (s.tier.charAt(0) + s.tier.slice(1).toLowerCase()),
+            description: s.description || "Driving the future of electric mobility with Team Arion Racing.",
+            website: s.website_url || "#",
+            instagram: s.instagram_url || "#",
+            linkedin: s.linkedin_url || "#",
+          }));
+          setSponsors(mapped);
+        } else {
+          setSponsors(fallbackSponsors);
+        }
+      } catch (err) {
+        console.error("Error loading sponsors:", err);
+        setSponsors(fallbackSponsors);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadSponsors();
+  }, []);
 
   const platinumSponsor = sponsors.find(s => s.tier === "Platinum");
   const goldSponsors = sponsors.filter(s => s.tier === "Gold");

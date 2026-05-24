@@ -1,9 +1,51 @@
 "use client";
 
-import { FeaturedMentorCard, MentorCard } from "./MentorCard";
-import { facultyAdvisor, mentors } from "@/libs/data/team/mentor";
+import { useEffect, useState } from "react";
+import { MentorCard } from "./MentorCard";
+import {
+  mentors as fallbackMentors,
+} from "@/lib/data/team/mentor";
+import { supabase } from "@/lib/supabase";
+import { Mentor } from "@/lib/data/team/types";
 
 export default function MentorSection() {
+  const [mentors, setMentors] = useState<Mentor[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadMentors() {
+      try {
+        const { data, error } = await supabase
+          .from("faculty_mentors")
+          .select("*")
+          .order("display_order", { ascending: true });
+
+        if (data && data.length > 0) {
+          const mappedMentors = data
+            .filter((m: any) => m.type === "MENTOR")
+            .map((m: any) => ({
+              name: m.name,
+              role: m.designation,
+              description: m.company_or_institution,
+              image: m.image_url,
+            }));
+
+          setMentors(
+            mappedMentors.length > 0 ? mappedMentors : fallbackMentors,
+          );
+        } else {
+          setMentors(fallbackMentors);
+        }
+      } catch (err) {
+        console.error("Error loading mentors:", err);
+        setMentors(fallbackMentors);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadMentors();
+  }, []);
+
   return (
     <section className="max-w-7xl mx-auto px-8 mb-32 z-20 relative">
       {/* Section Header */}
@@ -17,10 +59,7 @@ export default function MentorSection() {
         <div className="w-full h-[1px] bg-gradient-to-r from-[#3b4a48] via-[#3b4a48] to-transparent mt-8"></div>
       </div>
 
-      {/* Faculty Advisor Section */}
-      <div className="mb-24 flex justify-center">
-        <FeaturedMentorCard mentor={facultyAdvisor} />
-      </div>
+
 
       {/* Mentors & Advisors Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

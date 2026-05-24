@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Mentor } from "@/libs/data/team/types";
+import { Mentor } from "@/lib/data/team/types";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import { useRef } from "react";
 
@@ -50,7 +50,7 @@ export function FeaturedMentorCard({ mentor }: { mentor: Mentor }) {
         rotateX,
         rotateY,
       }}
-      className="group bg-[#192120]/80 backdrop-blur-md border border-[#3b4a48]/40 hover:border-[#0beae0]/60 p-1 relative overflow-hidden transition-all duration-500 w-full max-w-4xl"
+      className="group bg-[#192120]/80 backdrop-blur-md border border-[#3b4a48]/40 hover:border-[#0beae0]/60 p-1 relative overflow-hidden transition-all duration-500 w-full max-w-4xl rounded-xl"
     >
       <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#0beae0]/5 to-transparent pointer-events-none" />
       
@@ -128,7 +128,7 @@ export function MentorCard({ mentor }: { mentor: Mentor }) {
         rotateX,
         rotateY,
       }}
-      className="group bg-[#192120]/80 backdrop-blur-md border border-[#3b4a48]/40 hover:border-[#0beae0]/60 p-1 relative overflow-hidden transition-all duration-500 h-full"
+      className="group bg-[#192120]/80 backdrop-blur-md border border-[#3b4a48]/40 hover:border-[#0beae0]/60 p-1 relative overflow-hidden transition-all duration-500 h-full rounded-xl"
     >
       <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#0beae0]/5 to-transparent pointer-events-none" />
 
