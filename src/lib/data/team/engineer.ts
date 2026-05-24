@@ -24,17 +24,6 @@ export const electricalsTeam: TeamMember[] = [
     funLine: "🔬 Designing intelligence at chip level",
   },
   {
-    id: "mem-elec-3",
-    name: "Dhyan",
-    role: "Engineer",
-    focus: "Embedded Systems",
-    image: placeholderImage,
-    category: "engineers",
-    department: "Electronics Engineering (VLSI Design)",
-    domain: "Electricals",
-    funLine: "🧠 Making machines think smarter",
-  },
-  {
     id: "mem-elec-4",
     name: "Sam David",
     role: "Engineer",
