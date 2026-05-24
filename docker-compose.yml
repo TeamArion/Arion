@@ -1,0 +1,44 @@
+services:
+  # ==========================================
+  # DEVELOPMENT ENVIRONMENT
+  # Use: docker compose up web-dev
+  # ==========================================
+  web-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=development
+    restart: always
+    networks:
+      - arion_network
+
+  # ==========================================
+  # PRODUCTION / PREVIEW ENVIRONMENT
+  # Use: docker compose up --build web-prod
+  # ==========================================
+  web-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+    restart: always
+    networks:
+      - arion_network
+
+networks:
+  arion_network:
+    driver: bridge

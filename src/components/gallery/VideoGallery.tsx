@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 import type { VideoItem } from "@/types/media";
+import { getOptimizedSupabaseUrl } from "@/lib/supabase";
 
 interface VideoGalleryProps {
   videos: VideoItem[];
@@ -36,17 +37,18 @@ export default function VideoGallery({ videos, className = "" }: VideoGalleryPro
             className="lg:col-span-2 group cursor-pointer"
             onClick={() => setActiveVideo(featured)}
           >
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 hover:border-primary/40 transition-all duration-500">
+            <div className="relative rounded-2xl overflow-hidden border border-white/5 hover:border-primary/40 transition-all duration-500 bg-black flex items-center justify-center min-h-[300px]">
               <img
-                src={featured.thumbnailUrl}
+                src={getOptimizedSupabaseUrl(featured.thumbnailUrl)}
                 alt={featured.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                className="w-full h-auto max-h-[70vh] object-contain group-hover:scale-105 transition-transform duration-700 block"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
 
               {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/40 group-hover:border-primary group-hover:bg-primary/10 flex items-center justify-center transition-all duration-300 backdrop-blur-sm">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-white/40 group-hover:border-primary group-hover:bg-primary/10 flex items-center justify-center transition-all duration-300 backdrop-blur-sm pointer-events-auto">
                   <Play className="w-7 h-7 md:w-8 md:h-8 text-white group-hover:text-primary transition-colors ml-1" />
                 </div>
               </div>
@@ -57,7 +59,7 @@ export default function VideoGallery({ videos, className = "" }: VideoGalleryPro
               </div>
 
               {/* Info */}
-              <div className="absolute bottom-6 left-6 right-6">
+              <div className="absolute bottom-6 left-6 right-6 pointer-events-none">
                 <h3 className="text-lg md:text-xl font-bold text-white tracking-tight group-hover:text-primary transition-colors">
                   {featured.title}
                 </h3>
@@ -103,19 +105,20 @@ function VideoCard({
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onClick={onClick}
-      className="group flex gap-4 p-3 rounded-xl border border-white/5 hover:border-primary/30 bg-zinc-900/30 hover:bg-zinc-900/60 cursor-pointer transition-all duration-300"
+      className="group flex gap-4 p-3 rounded-xl border border-white/5 hover:border-primary/30 bg-zinc-900/30 hover:bg-zinc-900/60 cursor-pointer transition-all duration-300 items-center"
     >
       {/* Thumbnail */}
-      <div className="relative w-28 md:w-32 aspect-video rounded-lg overflow-hidden shrink-0">
+      <div className="relative w-28 md:w-32 bg-black rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
         <img
-          src={video.thumbnailUrl}
+          src={getOptimizedSupabaseUrl(video.thumbnailUrl)}
           alt={video.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          loading="lazy"
+          className="w-full h-auto max-h-[100px] object-cover group-hover:scale-110 transition-transform duration-500 block"
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
           <Play className="w-5 h-5 text-white/80 group-hover:text-primary transition-colors" />
         </div>
-        <div className="absolute bottom-1 right-1 text-[9px] font-bold text-white bg-black/70 px-1.5 py-0.5 rounded">
+        <div className="absolute bottom-1 right-1 text-[9px] font-bold text-white bg-black/70 px-1.5 py-0.5 rounded pointer-events-none">
           {video.duration}
         </div>
       </div>
@@ -154,13 +157,15 @@ function VideoModal({ video, onClose }: { video: VideoItem; onClose: () => void 
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,255,255,0.1)]"
+        className="relative w-full max-w-6xl rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,255,255,0.1)] transition-all duration-300 flex items-center justify-center bg-black/50"
         onClick={(e) => e.stopPropagation()}
+        style={{ maxHeight: '90vh' }}
       >
         <video
           ref={videoRef}
           src={video.videoUrl}
-          className="w-full h-full object-cover"
+          preload="metadata"
+          className="max-h-[90vh] w-auto max-w-full object-contain mx-auto block"
           controls
           autoPlay
           playsInline

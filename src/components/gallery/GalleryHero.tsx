@@ -23,11 +23,12 @@ export default function GalleryHero({
 
   return (
     <section className="relative w-full overflow-hidden">
-      {/* Background */}
+      {/* Background - Note: local assets like /images/Car_1.jpeg should be manually converted to WebP for optimal performance. */}
       {bgImage && (
         <img
           src={bgImage}
           alt=""
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale"
         />
       )}

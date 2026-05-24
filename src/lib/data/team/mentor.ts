@@ -25,14 +25,14 @@ export const mentors: Mentor[] = [
     image: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/Mentor/mentor_naveen.png",
   },
   {
-    name: "Akshaye Aron",
+    name: "Akshaye Aaron",
     role: "FORMER MARKETING HEAD",
     description:
       "Expertise in high-voltage battery systems and motor controller optimization.",
     image: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/Mentor/mentor_aks.png",
   },
   {
-    name: "SUDHARSHAN KM",
+    name: "SUDARSHAN KM",
     role: "FORMER POWERTRAIN HEAD",
     description:
       "Specializes in data acquisition systems and low-voltage wiring harness design.",

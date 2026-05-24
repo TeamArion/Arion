@@ -2,12 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  output: "standalone",
   reactCompiler: true,
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "kgvzyvkoafffsqwnqscl.supabase.co",
+        hostname: "*.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
       {

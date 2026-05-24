@@ -3,6 +3,8 @@ import type { MediaItem, VideoItem } from "@/types/media";
 
 // ─── Mock data services for Formula Bharat page ──────────────────────
 // These functions simulate database queries. Replace with Prisma calls later.
+// NOTE: Local fallback assets (e.g. /images/...) should be manually converted to WebP or AVIF 
+// for optimal performance, as Supabase transformations cannot process local repository files.
 
 export function getCompetitionStats(): FormulaBharatStats {
   return {
@@ -18,74 +20,6 @@ export function getCompetitionStats(): FormulaBharatStats {
   };
 }
 
-export function getTimeline(): TimelineEvent[] {
-  return [
-    {
-      id: "tl-1",
-      title: "Registration & Documentation",
-      description: "Team registration, SES submission, and initial documentation for Formula Bharat 2026.",
-      date: "2025-09-01",
-      status: "completed",
-      iconType: "registration",
-    },
-    {
-      id: "tl-2",
-      title: "Technical Inspection",
-      description: "Vehicle scrutineering — mechanical, electrical, and safety systems compliance check.",
-      date: "2026-01-15",
-      status: "completed",
-      iconType: "inspection",
-    },
-    {
-      id: "tl-3",
-      title: "Design Event",
-      description: "Detailed design presentation to the judges panel covering vehicle architecture and engineering rationale.",
-      date: "2026-01-16",
-      status: "completed",
-      iconType: "design",
-    },
-    {
-      id: "tl-4",
-      title: "Cost & Manufacturing Event",
-      description: "Full BOM presentation, cost analysis, and manufacturing process review.",
-      date: "2026-01-17",
-      status: "completed",
-      iconType: "cost",
-    },
-    {
-      id: "tl-5",
-      title: "Business Presentation",
-      description: "Business plan and market strategy presentation to the judging panel.",
-      date: "2026-01-17",
-      status: "completed",
-      iconType: "business",
-    },
-    {
-      id: "tl-6",
-      title: "Autocross & Skidpad",
-      description: "Dynamic handling events — timed autocross laps and skidpad cornering evaluation.",
-      date: "2026-01-18",
-      status: "completed",
-      iconType: "dynamic",
-    },
-    {
-      id: "tl-7",
-      title: "Endurance & Efficiency",
-      description: "22 km endurance run testing vehicle reliability, driver performance, and energy efficiency.",
-      date: "2026-01-19",
-      status: "active",
-      iconType: "endurance",
-    },
-    {
-      id: "tl-8",
-      title: "Final Results & Awards",
-      description: "Overall standings announcement and award ceremony.",
-      date: "2026-01-20",
-      status: "upcoming",
-      iconType: "results",
-    },
-  ];
-}
 
 export function getCompetitionUpdates(): CompetitionUpdate[] {
   return [
@@ -123,8 +57,8 @@ export function getCompetitionMedia(): MediaItem[] {
       title: "Scrutineering Bay",
       description: "AR-26 during technical inspection",
       mediaType: "image",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      mediaUrl: "/images/Car_1.jpeg",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-1.png",
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-1.png",
       category: "Static Events",
       season: "2025-26",
       createdAt: "2026-01-15",
@@ -134,8 +68,8 @@ export function getCompetitionMedia(): MediaItem[] {
       title: "Design Presentation",
       description: "Team presenting to the design judges",
       mediaType: "image",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      mediaUrl: "/images/Car_1.jpeg",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-2.png",
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-2.png",
       category: "Static Events",
       season: "2025-26",
       createdAt: "2026-01-16",
@@ -144,9 +78,9 @@ export function getCompetitionMedia(): MediaItem[] {
       id: "fb-m3",
       title: "Autocross Run",
       description: "Hot lap during the autocross event",
-      mediaType: "video",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      mediaUrl: "/videos/car_video.mp4",
+      mediaType: "image",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-3.png",
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-3.png",
       category: "Dynamic Events",
       season: "2025-26",
       createdAt: "2026-01-18",
@@ -156,8 +90,8 @@ export function getCompetitionMedia(): MediaItem[] {
       title: "Pit Area Setup",
       description: "Team working in the paddock",
       mediaType: "image",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      mediaUrl: "/images/Car_1.jpeg",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-4.png",
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-4.png",
       category: "Pit Area",
       season: "2025-26",
       createdAt: "2026-01-15",
@@ -167,8 +101,8 @@ export function getCompetitionMedia(): MediaItem[] {
       title: "Team Photo",
       description: "Full team at the competition venue",
       mediaType: "image",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      mediaUrl: "/images/Car_1.jpeg",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-5.png",
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-5.png",
       category: "Team",
       season: "2025-26",
       createdAt: "2026-01-20",
@@ -177,9 +111,9 @@ export function getCompetitionMedia(): MediaItem[] {
       id: "fb-m6",
       title: "Endurance Run",
       description: "AR-26 on the endurance circuit",
-      mediaType: "video",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      mediaUrl: "/videos/car_video.mp4",
+      mediaType: "image",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-6.png",
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-6.png",
       category: "Endurance",
       season: "2025-26",
       createdAt: "2026-01-19",
@@ -191,29 +125,39 @@ export function getCompetitionVideos(): VideoItem[] {
   return [
     {
       id: "fb-v1",
-      title: "Formula Bharat 2026 — Full Recap",
-      description: "Competition highlights from registration to the final results ceremony.",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      videoUrl: "/videos/car_video.mp4",
+      title: "Day-2: Full Recap",
+      description: "Day-2 Highlights",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/day2.png",
+      videoUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day2.mp4",
       duration: "5:12",
       category: "Recap",
       isFeatured: true,
     },
     {
       id: "fb-v2",
-      title: "Autocross Onboard",
-      description: "Driver POV during the autocross hot lap.",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      videoUrl: "/videos/car_video.mp4",
+      title: "Day-3: Full Recap",
+      description: "Day-3 Highlights",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day3.png",
+      videoUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day3.mp4",
       duration: "1:02",
       category: "Dynamic Events",
     },
     {
       id: "fb-v3",
-      title: "Endurance Highlights",
-      description: "Key moments from the 22km endurance run.",
-      thumbnailUrl: "/images/Car_1.jpeg",
-      videoUrl: "/videos/car_video.mp4",
+      title: "Day-4: Full Recap",
+      description: "Day-4 Highlights",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day4.png",
+      videoUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day4.mp4",
+      duration: "3:28",
+      category: "Endurance",
+    },
+
+    {
+      id: "fb-v4",
+      title: "Day-5: Full Recap",
+      description: "Day-5 Highlights",
+      thumbnailUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day5.png",
+      videoUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day5.mp4",
       duration: "3:28",
       category: "Endurance",
     },
@@ -229,22 +173,22 @@ export function getCompetitionCategories(): string[] {
 export function getCompetitionInstagramPosts() {
   return [
     {
-      type: "post" as const,
-      mediaUrl: "/images/Car_1.jpeg",
-      caption: "Day 1 at Formula Bharat! The AR25 has officially cleared the Noise Test and Tilt Test on the first try. Standard inspection passed with flying colors! 🏎️💨 #FormulaBharat #TeamArion #AR25 #Scrutineering",
+      type: "reel" as const,
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day0.mp4",
+      caption: "Day 0 at Formula Bharat! The AR25 has officially cleared the Noise Test and Tilt Test on the first try. Standard inspection passed with flying colors! 🏎️💨 #FormulaBharat #TeamArion #AR25 #Scrutineering",
       likes: 480,
       comments: 25,
     },
     {
-      type: "post" as const,
-      mediaUrl: "/images/Car_1.jpeg",
-      caption: "Day 2 Updates: Static Events! We are thrilled to announce that Team Arion has secured Bplan Rank 3 at Formula Bharat 2026. Proud of the business presentation team for an outstanding pitch! 🏆📊 #Bplan #FSAE #TeamArion #AR25",
+      type: "reel" as const,
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Day1.mp4",
+      caption: "Day 1 Updates: Static Events! We are thrilled to announce that Team Arion has secured Bplan Rank 3 at Formula Bharat 2026. Proud of the business presentation team for an outstanding pitch! 🏆📊 #Bplan #FSAE #TeamArion #AR25",
       likes: 520,
       comments: 18,
     },
     {
       type: "reel" as const,
-      mediaUrl: "/videos/car_video.mp4",
+      mediaUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-vid-1.MOV",
       caption: "Day 3 & Final Results: Endurance: CLEARED! 🏁 The AR25 crossed the line after a grueling 22km run. With all events combined, Team Arion achieves Overall Rank 11. What an incredible journey! ⚡🏆 #Endurance #OverallStandings #FormulaBharat #Racing",
       likes: 1105,
       comments: 74,

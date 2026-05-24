@@ -1,4 +1,4 @@
-import { TeamMember, placeholderImage } from "./types";
+import {TeamMember} from "./types";
 
 export const executiveHeads: TeamMember[] = [
   // executive Committee
@@ -81,7 +81,7 @@ export const executiveHeads: TeamMember[] = [
     id: "hos-powertrain-1",
     name: "Pranith M",
     role: "Head of Powertrain",
-    focus: "Electric Thrust & Accumulator",
+    focus: "Powertrain & Drivetrain",
     image:
       "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/HoS/Pranith.png",
     experience: "4 Seasons",

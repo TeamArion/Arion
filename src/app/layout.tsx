@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Team Arion | Electric Racing",
+  title: "Team Arion | CV Racing",
   description:
-    "Official website for Team Arion - Custom machined precision engineering.",
+    "The official website of Team Arion Racing - NMIT's Formula Student CV Team",
 };
 
 export default function RootLayout({

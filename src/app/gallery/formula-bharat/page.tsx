@@ -8,12 +8,15 @@ import StatCard from "@/components/gallery/StatCard";
 import PhotoGrid from "@/components/gallery/PhotoGrid";
 import InstagramPost from "@/components/gallery/Instagram";
 import BackToGallery from "@/components/gallery/BackToGallery";
+import VideoGallery from "@/components/gallery/VideoGallery";
 
 import {
   getCompetitionMedia,
   getCompetitionInstagramPosts,
+  getCompetitionVideos,
 } from "@/lib/data/gallery/formula-bharat";
 import { supabase } from "@/lib/supabase";
+import { VideoItem } from "@/types/media";
 
 /** Animated counter hook — counts from 0 to target when element is in view */
 function useAnimatedCounter(target: number, duration: number = 2000) {
@@ -62,9 +65,11 @@ function AnimatedStatCard({ label, value, isNumeric }: { label: string; value: s
 
 export default function FormulaBharatPage() {
   const [gridItems, setGridItems] = useState<any[]>([]);
+  const [videos, setVideos] = useState<VideoItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fallbackMedia = getCompetitionMedia();
+  const fallbackVideos = getCompetitionVideos();
   const instagramPosts = getCompetitionInstagramPosts();
 
   useEffect(() => {
@@ -87,6 +92,18 @@ export default function FormulaBharatPage() {
             span: getGridSpan(idx),
           }));
           setGridItems(mapped);
+
+          const videoMedia = fbMedia.filter((item: any) => (item.type || "").toUpperCase() === "VIDEO");
+          const mappedVideos = videoMedia.map((item: any) => ({
+            id: item.id.toString(),
+            title: item.title,
+            description: item.description || "Competition highlight.",
+            thumbnailUrl: "/images/Car_1.jpeg",
+            videoUrl: item.media_url,
+            duration: "2:00",
+            category: "Highlight",
+          }));
+          setVideos(mappedVideos.length > 0 ? mappedVideos : fallbackVideos);
         } else {
           setGridItems(
             fallbackMedia.map((item, i) => ({
@@ -98,6 +115,7 @@ export default function FormulaBharatPage() {
               span: getGridSpan(i),
             }))
           );
+          setVideos(fallbackVideos);
         }
       } catch (err) {
         console.error("Error loading Formula Bharat gallery:", err);
@@ -111,6 +129,7 @@ export default function FormulaBharatPage() {
             span: getGridSpan(i),
           }))
         );
+        setVideos(fallbackVideos);
       } finally {
         setLoading(false);
       }
@@ -211,10 +230,24 @@ export default function FormulaBharatPage() {
           <PhotoGrid mediaItems={gridItems} />
         </div>
       </section>
+
+      {/* VIDEO HIGHLIGHTS */}
+      <section className="bg-black py-24 md:py-32 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <SectionHeader
+            title="VIDEO"
+            italicTitle="HIGHLIGHTS"
+            tagline="Motion captured // Pit lane stories"
+            className="mb-16"
+          />
+          <VideoGallery videos={videos} />
+        </div>
+      </section>
     </div>
   );
 }
 
+/** Assigns grid span classes based on index for a dynamic masonry feel */
 function getGridSpan(index: number): string {
   const spans = [
     "md:col-span-3 md:row-span-3 col-span-2",

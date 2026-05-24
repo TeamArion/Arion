@@ -35,7 +35,7 @@ export default function BrochurePage() {
           title="FULL TELEMETRY"
           description="Comprehensive data logs from the latest shakedown. Explore intricate details of our systems' performance under pressure."
           type="tech"
-          file="/pdfs/engineering.pdf"
+          file="/pdf/Tech-brochure.pdf"
         />
 
         <BrochureCard
@@ -43,11 +43,7 @@ export default function BrochurePage() {
           title="SPONSORSHIP PACK"
           description="The definitive guide to Team Arion’s mission. Discover the impactful opportunities and reach global audiences with us."
           type="sponsor"
-          stats={[
-            { label: "EXPOSURE", value: "12M+" },
-            { label: "REACH", value: "GLOBAL" },
-          ]}
-          file="/pdfs/sponsorship.pdf"
+          file="/pdf/sponsorship.pdf"
         />
       </div>
     </section>

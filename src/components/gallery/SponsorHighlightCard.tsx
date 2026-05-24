@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { SponsorHighlight } from "@/types/sponsor";
+import { getOptimizedSupabaseUrl } from "@/lib/supabase";
 
 interface SponsorHighlightCardProps {
   highlight: SponsorHighlight;
@@ -23,8 +24,9 @@ export default function SponsorHighlightCard({ highlight, index = 0 }: SponsorHi
       {/* Image */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
-          src={highlight.imageUrl}
+          src={getOptimizedSupabaseUrl(highlight.imageUrl)}
           alt={highlight.title}
+          loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent pointer-events-none" />

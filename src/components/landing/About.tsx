@@ -46,10 +46,7 @@ export default function About() {
 
           {/* Description */}
           <p className="mt-12 text-white/70 font-body leading-relaxed max-w-3xl text-lg">
-            We are Team Arion, a collective of visionaries, mechanics, and
-            computational designers at the forefront of Formula Student India.
-            Every component we machine is a testament to our pursuit of
-            kinematic perfection.
+            Team Arion, representing Nitte Meenakshi Institute of Technology, is a multidisciplinary Formula Student team competing in prestigious national events like SAEINDIA SUPRA and Formula Bharat in the CV (Combustion Vehicle) category. With over 60+ passionate members from diverse engineering disciplines, we are committed to designing and building competitive high-performance Formula Student cars.
           </p>
 
         </div>

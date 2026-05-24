@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { sponsors as fallbackSponsors, Sponsor } from "@/lib/data/sponsors";
 import SponsorCard from "@/components/sponsors/SponsorCard";
 import SponsorModal from "@/components/sponsors/SponsorModal";
@@ -21,7 +22,7 @@ export default function SponsorClientPage() {
   useEffect(() => {
     async function loadSponsors() {
       try {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from("sponsors")
           .select("*")
           .order("display_order", { ascending: true });
@@ -33,7 +34,7 @@ export default function SponsorClientPage() {
             slug: getSlug(s.name),
             logo: s.logo_url,
             tier: s.tier === "TITLE" ? "Platinum" : (s.tier.charAt(0) + s.tier.slice(1).toLowerCase()),
-            description: s.description || "Driving the future of electric mobility with Team Arion Racing.",
+            description: s.description || "Driving the future of motorsport with Team Arion Racing.",
             website: s.website_url || "#",
             instagram: s.instagram_url || "#",
             linkedin: s.linkedin_url || "#",
@@ -85,7 +86,7 @@ export default function SponsorClientPage() {
             className="mb-8 border border-primary/30 p-4 bg-[#08100f]/80 backdrop-blur-sm"
           >
             <Image 
-              src="/images/Logo.jpg" 
+              src="/Logo.svg" 
               alt="Team Arion Racing Logo" 
               width={96} 
               height={96} 
@@ -227,9 +228,11 @@ export default function SponsorClientPage() {
             </p>
             
             <div className="flex flex-col md:flex-row gap-6 justify-center">
-              <button className="bg-primary text-[#006560] hover:bg-white hover:text-black font-display font-bold py-5 px-10 uppercase tracking-[0.1em] text-sm transition-all shadow-[0_0_20px_rgba(11,234,224,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                DOWNLOAD SPONSOR BROCHURE
-              </button>
+              <Link href="/brochure">
+                <button className="bg-primary text-[#006560] hover:bg-white hover:text-black font-display font-bold py-5 px-10 uppercase tracking-[0.1em] text-sm transition-all shadow-[0_0_20px_rgba(11,234,224,0.15)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] w-full">
+                  DOWNLOAD SPONSOR BROCHURE
+                </button>
+              </Link>
             </div>
           </motion.div>
         </div>

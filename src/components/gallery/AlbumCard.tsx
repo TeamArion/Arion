@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Images } from "lucide-react";
 import type { Album } from "@/types/media";
+import { getOptimizedSupabaseUrl } from "@/lib/supabase";
 
 interface AlbumCardProps {
   album: Album;
@@ -27,8 +28,9 @@ export default function AlbumCard({ album, index = 0 }: AlbumCardProps) {
         {/* Cover Image */}
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
-            src={album.coverImageUrl}
+            src={getOptimizedSupabaseUrl(album.coverImageUrl)}
             alt={album.name}
+            loading="lazy"
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />

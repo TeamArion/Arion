@@ -18,15 +18,13 @@ export default function MissionVision() {
           </span>
 
           <h3 className="font-display font-bold text-4xl text-white mb-6 uppercase tracking-tight">
-            PRECISION BEYOND
+            BUILDING RELIABILITY.
             <br />
-            THE CHASSIS
+            ENGINEERING PERFORMANCE.
           </h3>
 
           <p className="text-white/70 max-w-md leading-relaxed font-body">
-            To push the boundaries of automotive engineering through rigorous
-            testing, computational fluid dynamics, and absolute discipline in
-            the workshop.
+            To design and develop reliable, high-performance Formula Student race cars through precision engineering, rigorous testing, and continuous innovation while fostering teamwork and technical excellence.
           </p>
         </div>
       </div>
@@ -47,15 +45,13 @@ export default function MissionVision() {
           </span>
 
           <h3 className="font-display font-bold text-4xl text-white mb-6 uppercase tracking-tight">
-            DEFINING THE
+            BUILDING TO COMPETE,
             <br />
-            CV FUTURE
+            DRIVEN TO ACHIEVE AIR 1
           </h3>
 
           <p className="text-white/70 max-w-md leading-relaxed font-body">
-            To evolve into a global leader in high-performance electric
-            powertrains, setting new standards for efficiency and raw power
-            delivery.
+            To establish Team Arion as a nationally leading Formula Student team by consistently engineering high-performance vehicles, excelling in competition, and striving to secure All India Rank 1 through innovation and relentless dedication.
           </p>
         </div>
       </div>

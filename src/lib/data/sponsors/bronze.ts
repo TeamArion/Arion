@@ -48,7 +48,7 @@ const bronze: Sponsor[] = [
   {
   name: "Asap Motorsports",
   slug: "asap-motorsports",
-  logo: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/Sponsor_Logo/ASAP%20Motorsport.png",
+  logo: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/Sponsor_Logo/ASAP.png",
   tier: "Bronze",
   description:
     "Asap Motorsports is closely connected to the motorsports ecosystem, supporting performance-focused builds and racing initiatives. Their support in providing components played an important role in our build, helping us improve performance and stay aligned with the demands of racing.",
@@ -79,7 +79,7 @@ const bronze: Sponsor[] = [
   linkedin: "#",
 },
   {
-  name: "Starya",
+  name: "Starya Mobility",
   slug: "starya",
   logo: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/Sponsor_Logo/Starya.png",
   tier: "Bronze",

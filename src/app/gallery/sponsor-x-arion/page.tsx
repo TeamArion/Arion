@@ -123,7 +123,7 @@ export default function SponsorXArionPage() {
           <SectionHeader
             title="INSTAGRAM"
             italicTitle="SHOWCASE"
-            tagline="Follow @_team.arion_ for the latest"
+            tagline="Follow @_team.arion_ for the latest updates"
             className="mb-16"
           />
 

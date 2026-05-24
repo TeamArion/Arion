@@ -76,19 +76,35 @@ export default function SponsorShowcasePage({ data }: SponsorShowcasePageProps) 
           {/* Logo */}
           <motion.div
             variants={fadeUp}
-            className="relative w-36 h-36 md:w-52 md:h-52 lg:w-60 lg:h-60 mb-10"
+            className={`relative ${
+              data.enlargeLogo 
+                ? "w-64 h-32 md:w-96 md:h-48 lg:w-[600px] lg:h-[300px] mb-6" 
+                : "w-36 h-36 md:w-52 md:h-52 lg:w-60 lg:h-60 mb-10"
+            } flex items-center justify-center`}
           >
-            {/* Glow ring */}
-            <div className="absolute -inset-4 rounded-full bg-gradient-to-b from-primary/10 to-transparent blur-2xl" />
-            <div className="relative w-full h-full rounded-full border border-white/[0.08] bg-[#0d1716]/80 backdrop-blur-sm overflow-hidden shadow-[0_0_80px_rgba(11,234,224,0.12)]">
+            {data.hideCircularFrame ? (
               <Image
                 src={logoImage}
                 alt={`${sponsor.name} logo`}
                 fill
-                className="object-contain p-6 md:p-8"
+                className="object-contain drop-shadow-2xl"
                 priority
               />
-            </div>
+            ) : (
+              <>
+                {/* Glow ring */}
+                <div className="absolute -inset-4 rounded-full bg-gradient-to-b from-primary/10 to-transparent blur-2xl" />
+                <div className="relative w-full h-full rounded-full border border-white/[0.08] bg-[#0d1716]/80 backdrop-blur-sm overflow-hidden shadow-[0_0_80px_rgba(11,234,224,0.12)]">
+                  <Image
+                    src={logoImage}
+                    alt={`${sponsor.name} logo`}
+                    fill
+                    className="object-contain p-6 md:p-8"
+                    priority
+                  />
+                </div>
+              </>
+            )}
           </motion.div>
 
           {/* Platinum Sponsor Badge */}
@@ -107,12 +123,14 @@ export default function SponsorShowcasePage({ data }: SponsorShowcasePageProps) 
           </motion.div>
 
           {/* Company Name */}
-          <motion.h1
-            variants={fadeUp}
-            className="font-display font-black text-5xl sm:text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.85] text-white"
-          >
-            {sponsor.name}
-          </motion.h1>
+          {!data.hideName && (
+            <motion.h1
+              variants={fadeUp}
+              className="font-display font-black text-5xl sm:text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.85] text-white"
+            >
+              {sponsor.name}
+            </motion.h1>
+          )}
         </motion.div>
       </section>
 
@@ -154,12 +172,12 @@ export default function SponsorShowcasePage({ data }: SponsorShowcasePageProps) 
       {/* ═══════════════════════════════════════════ */}
       {/* SECTION 3: FEATURED COLLABORATION          */}
       {/* ═══════════════════════════════════════════ */}
-      {instagramPostUrl && (
+      {(data.instagramPosts?.length || instagramPostUrl) && (
         <section className="relative py-20 md:py-32">
           {/* Top separator */}
           <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
-          <div className="container mx-auto px-6 max-w-3xl">
+          <div className="container mx-auto px-6 max-w-7xl">
             {/* Section heading */}
             <motion.div
               initial="hidden"
@@ -170,20 +188,43 @@ export default function SponsorShowcasePage({ data }: SponsorShowcasePageProps) 
               className="flex items-center gap-4 mb-14 justify-center"
             >
               <span className="h-[1px] w-10 bg-white/20" />
-              <h2 className="font-display font-bold text-[10px] md:text-xs tracking-[0.4em] text-white/40 uppercase">
-                Featured Instagram Post
+              <h2 className="font-display font-bold text-[10px] md:text-xs tracking-[0.4em] text-white/40 uppercase text-center">
+                Featured Collaborations
               </h2>
               <span className="h-[1px] w-10 bg-white/20" />
             </motion.div>
 
-            {/* Instagram Embed */}
-            <InstagramPost
-              type="post"
-              mediaUrl={logoImage || "/images/Car_1.jpeg"}
-              caption={`${sponsor.name} × Team Arion Racing`}
-              likes={154}
-              comments={12}
-            />
+            {/* Instagram Embeds */}
+            <div className="flex flex-wrap justify-center gap-6">
+              {data.instagramPosts && data.instagramPosts.length > 0 ? (
+                data.instagramPosts.map((post, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1, duration: 0.5 }}
+                    className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm"
+                  >
+                    <InstagramPost
+                      type={post.type}
+                      mediaUrl={post.mediaUrl}
+                      caption={post.caption}
+                      likes={post.likes}
+                      comments={post.comments}
+                    />
+                  </motion.div>
+                ))
+              ) : (
+                <InstagramPost
+                  type="post"
+                  mediaUrl={logoImage || "/images/Car_1.jpeg"}
+                  caption={`${sponsor.name} × Team Arion Racing`}
+                  likes={154}
+                  comments={12}
+                />
+              )}
+            </div>
           </div>
         </section>
       )}

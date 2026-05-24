@@ -21,7 +21,7 @@ const fallbackMediaItems = [
     type: "image",
     title: "Grid Lineup",
     desc: "Race lineup moment",
-    url: "/images/Car_1.jpeg",
+    url: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-5.png",
     span: "md:col-span-2 md:row-span-2",
   },
   {
@@ -29,15 +29,15 @@ const fallbackMediaItems = [
     type: "video",
     title: "Pit Action",
     desc: "Team in action",
-    url: "/videos/car_video.mp4",
+    url: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/TA%20F1%20REEL.mp4",
     span: "md:col-span-2 md:row-span-2",
   },
   {
     id: 4,
-    type: "image",
-    title: "Aero Detail",
+    type: "video",
+    title: "Insta Post",
     desc: "Engineering focus",
-    url: "/images/Car_1.jpeg",
+    url: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Reel-1.mp4",
     span: "md:col-span-1 md:row-span-3",
   },
   {
@@ -45,7 +45,7 @@ const fallbackMediaItems = [
     type: "image",
     title: "Team Moment",
     desc: "Crew performance",
-    url: "/images/Car_1.jpeg",
+    url: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/Full%20Team.png",
     span: "md:col-span-2 md:row-span-2",
   },
   {

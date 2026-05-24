@@ -117,7 +117,7 @@ export default function SponsorCard({ sponsor, onClick }: SponsorCardProps) {
         {sponsor.tier !== "Platinum" && sponsor.tier !== "Gold" && sponsor.tier !== "Silver" && (
           <div className="min-h-[80px] w-full mt-2 md:mt-4 flex justify-center">
             <p className="font-body text-sm leading-relaxed line-clamp-3 text-center text-on-surface-variant/70">
-              {sponsor.description || "Driving the future of electric mobility with Team Arion Racing."}
+              {sponsor.description || "Driving the future of motorsport with Team Arion Racing."}
             </p>
           </div>
         )}

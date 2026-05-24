@@ -5,24 +5,18 @@ import GalleryHero from "@/components/gallery/GalleryHero";
 import SectionHeader from "@/components/gallery/SectionHeader";
 import FeaturedMomentCard from "@/components/gallery/FeaturedMomentCard";
 import PhotoGrid from "@/components/gallery/PhotoGrid";
-import VideoGallery from "@/components/gallery/VideoGallery";
-import AlbumCard from "@/components/gallery/AlbumCard";
 import BackToGallery from "@/components/gallery/BackToGallery";
 import { supabase } from "@/lib/supabase";
 
 import {
   getFeaturedMoments as fallbackFeatured,
   getMediaItems as fallbackMediaItems,
-  getVideoHighlights as fallbackVideos,
-  getAlbums as fallbackAlbums,
 } from "@/lib/data/gallery/arion-in-action";
-import { FeaturedMoment, VideoItem, Album } from "@/types/media";
+import { FeaturedMoment } from "@/types/media";
 
 export default function ArionInActionPage() {
   const [featuredMoments, setFeaturedMoments] = useState<FeaturedMoment[]>([]);
   const [gridItems, setGridItems] = useState<any[]>([]);
-  const [videos, setVideos] = useState<VideoItem[]>([]);
-  const [albums, setAlbums] = useState<Album[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,34 +31,41 @@ export default function ArionInActionPage() {
 
         if (aiaMedia.length > 0) {
           const imageMedia = aiaMedia.filter((item: any) => item.type === "IMAGE");
-          const videoMedia = aiaMedia.filter((item: any) => item.type === "VIDEO");
 
-          const mappedFeatured = imageMedia.slice(0, 4).map((item: any) => ({
-            id: item.id.toString(),
-            title: item.title,
-            description: item.description || `Milestone details for ${item.title}.`,
-            imageUrl: item.media_url,
-            date: item.created_at ? item.created_at.split("T")[0] : "2025-08-15",
-            category: "Milestone",
-          }));
+          const mappedFeatured = [
+            {
+              id: "fm-video-1",
+              title: "Arion In Action Video Highlight",
+              description: "",
+              imageUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/AiA/AiA-9.mp4",
+              date: "2025-10-15",
+              category: "Highlight",
+            },
+            {
+              id: "fm-img-1",
+              title: "FB26 Highlight",
+              description: "",
+              imageUrl: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/gallery/FB26/FB-6.png",
+              date: "2025-11-20",
+              category: "Highlight",
+            },
+            ...imageMedia.slice(0, 2).map((item: any) => ({
+              id: item.id.toString(),
+              title: item.title,
+              description: item.description || `Milestone details for ${item.title}.`,
+              imageUrl: item.media_url,
+              date: item.created_at ? item.created_at.split("T")[0] : "2025-08-15",
+              category: "Milestone",
+            }))
+          ];
 
-          const mappedGrid = imageMedia.slice(4).map((item: any, idx: number) => ({
+          const mappedGrid = imageMedia.slice(2).map((item: any, idx: number) => ({
             id: idx + 1,
             type: "image" as const,
             title: item.title,
             desc: item.description || "",
             url: item.media_url,
             span: getGridSpan(idx),
-          }));
-
-          const mappedVideos = videoMedia.map((item: any) => ({
-            id: item.id.toString(),
-            title: item.title,
-            description: item.description || "Video highlight of the build and testing.",
-            thumbnailUrl: "/images/Car_1.jpeg",
-            videoUrl: item.media_url,
-            duration: "2:00",
-            category: "Highlight",
           }));
 
           setFeaturedMoments(mappedFeatured.length > 0 ? mappedFeatured : fallbackFeatured());
@@ -80,7 +81,6 @@ export default function ArionInActionPage() {
                   span: getGridSpan(i),
                 }))
           );
-          setVideos(mappedVideos.length > 0 ? mappedVideos : fallbackVideos());
         } else {
           setFeaturedMoments(fallbackFeatured());
           setGridItems(
@@ -93,9 +93,7 @@ export default function ArionInActionPage() {
               span: getGridSpan(i),
             }))
           );
-          setVideos(fallbackVideos());
         }
-        setAlbums(fallbackAlbums());
       } catch (err) {
         console.error("Error loading Arion in Action gallery:", err);
         setFeaturedMoments(fallbackFeatured());
@@ -109,8 +107,6 @@ export default function ArionInActionPage() {
             span: getGridSpan(i),
           }))
         );
-        setVideos(fallbackVideos());
-        setAlbums(fallbackAlbums());
       } finally {
         setLoading(false);
       }
@@ -143,7 +139,7 @@ export default function ArionInActionPage() {
             className="mb-16"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredMoments.map((moment, i) => (
               <FeaturedMomentCard key={moment.id} moment={moment} index={i} />
             ))}
@@ -156,42 +152,11 @@ export default function ArionInActionPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <SectionHeader
             title="THE"
-            italicTitle="BUILD"
+            italicTitle="PROGRESS"
             tagline="Manufacturing // Assembly // Testing"
             className="mb-16"
           />
           <PhotoGrid mediaItems={gridItems} />
-        </div>
-      </section>
-
-      {/* VIDEO HIGHLIGHTS */}
-      <section className="bg-[#050505] py-24 md:py-32 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <SectionHeader
-            title="VIDEO"
-            italicTitle="HIGHLIGHTS"
-            tagline="Motion captured // Stories told"
-            className="mb-16"
-          />
-          <VideoGallery videos={videos} />
-        </div>
-      </section>
-
-      {/* SEASON ALBUMS */}
-      <section className="bg-black py-24 md:py-32 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <SectionHeader
-            title="SEASON"
-            italicTitle="ALBUMS"
-            tagline="Archives by year // The complete record"
-            className="mb-16"
-          />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {albums.map((album, i) => (
-              <AlbumCard key={album.id} album={album} index={i} />
-            ))}
-          </div>
         </div>
       </section>
     </div>

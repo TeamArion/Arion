@@ -14,10 +14,12 @@ export default function GalleryNavigation() {
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="relative aspect-video min-h-[450px] bg-zinc-900/40 border border-white/5 overflow-hidden shadow-2xl hover:shadow-primary/5 hover:border-primary/40 transition-all duration-500 rounded-2xl group"
           >
+            {/* Note: local assets like /images/Car_1.jpeg should be manually converted to WebP for optimal performance. */}
             <img 
               className="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" 
               src="/images/Car_1.jpeg" 
               alt="Arion In Action"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none"></div>
             <div className="absolute bottom-10 left-10 z-20">
@@ -34,10 +36,12 @@ export default function GalleryNavigation() {
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="relative h-full min-h-[200px] bg-zinc-900/40 border border-white/5 overflow-hidden shadow-xl hover:shadow-primary/5 hover:border-primary/40 transition-all duration-500 rounded-2xl group"
             >
+              {/* Note: local assets like /images/Car_1.jpeg should be manually converted to WebP for optimal performance. */}
               <img 
                 className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" 
                 src="/images/Car_1.jpeg" 
                 alt="Formula Bharat"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
               <div className="absolute bottom-6 left-8 text-white font-bold text-2xl tracking-tighter z-20 uppercase group-hover:text-primary transition-colors">Formula Bharat</div>
@@ -50,10 +54,12 @@ export default function GalleryNavigation() {
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className="relative h-full min-h-[200px] bg-zinc-900/40 border border-white/5 overflow-hidden shadow-xl hover:shadow-primary/5 hover:border-primary/40 transition-all duration-500 rounded-2xl group"
             >
+              {/* Note: local assets like /images/Car_1.jpeg should be manually converted to WebP for optimal performance. */}
               <img 
                 className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" 
                 src="/images/Car_1.jpeg" 
                 alt="Sponsor X Arion"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none"></div>
               <div className="absolute bottom-6 left-8 text-white font-bold text-2xl tracking-tighter z-20 uppercase group-hover:text-primary transition-colors">Sponsor X Arion</div>
