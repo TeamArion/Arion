@@ -18,7 +18,7 @@ export default function About() {
             
             <div className="flex flex-col gap-2">
               <span className="font-display font-bold text-5xl text-white">
-                3
+                8
               </span>
               <span className="font-body text-[#00D3B0] tracking-widest uppercase text-xs">
                 SEASONS COMPLETED
@@ -36,7 +36,7 @@ export default function About() {
 
             <div className="md:border-l border-t md:border-t-0 border-white/5 md:pl-8 pt-8 md:pt-0 flex flex-col gap-2">
               <span className="font-display font-bold text-5xl text-white">
-                TOP 10
+                AIR 11
               </span>
               <span className="font-body text-[#00D3B0] tracking-widest uppercase text-xs">
                 NATIONAL RANKING

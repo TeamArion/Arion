@@ -18,30 +18,23 @@ export default function BrochurePage() {
         </div>
 
         <h1 className="text-5xl sm:text-7xl font-extrabold text-white leading-tight tracking-tight drop-shadow-sm">
-          Engineering <br />
+          Sponsorship <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
             Resources
           </span>
         </h1>
         <p className="mt-8 text-lg text-white/50 max-w-xl font-light leading-relaxed">
-          Access our comprehensive collection of technical specifications, partnership guides, and extensive telemetry data logs detailing the evolution of our vehicles.
+          Access our documentation containig detailed insights into the progress of the team.
         </p>
       </div>
 
       {/* CARDS GRID */}
       <div className="relative z-10 grid md:grid-cols-2 gap-12 lg:gap-16 max-w-7xl">
-        <BrochureCard
-          tag="TECHNICAL SPECS"
-          title="FULL TELEMETRY"
-          description="Comprehensive data logs from the latest shakedown. Explore intricate details of our systems' performance under pressure."
-          type="tech"
-          file="/pdf/Tech-brochure.pdf"
-        />
 
         <BrochureCard
           tag="PARTNERSHIP KIT"
           title="SPONSORSHIP PACK"
-          description="The definitive guide to Team Arion’s mission. Discover the impactful opportunities and reach global audiences with us."
+          description="Team Arion's Sponsorship Brochure for the season 2026-2027, detailing partnership opportunities and benefits and growth of the team over the years."
           type="sponsor"
           file="/pdf/sponsorship.pdf"
         />

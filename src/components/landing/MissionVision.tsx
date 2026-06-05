@@ -14,7 +14,7 @@ export default function MissionVision() {
           <div className="w-12 h-1 bg-[#00D3B0] mb-8"></div>
 
           <span className="font-body text-[#00D3B0] tracking-widest uppercase text-xs mb-4 block">
-            OUR MISSION
+            OUR VISION
           </span>
 
           <h3 className="font-display font-bold text-4xl text-white mb-6 uppercase tracking-tight">
@@ -41,7 +41,7 @@ export default function MissionVision() {
           <div className="w-12 h-1 bg-[#00D3B0] mb-8"></div>
 
           <span className="font-body text-[#00D3B0] tracking-widest uppercase text-xs mb-4 block">
-            OUR VISION
+            OUR MISSION
           </span>
 
           <h3 className="font-display font-bold text-4xl text-white mb-6 uppercase tracking-tight">

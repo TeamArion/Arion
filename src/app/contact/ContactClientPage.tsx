@@ -10,7 +10,7 @@ const CONTACTS = [
   {
     role: "D Jayanth",
     phone: "+91 90003 73502",
-    email: "captain@nmit.ac.in",
+    email: "1nt23ec037.jayanth@nmit.ac.in",
   },
   {
     role: "Rishi Nikhil",

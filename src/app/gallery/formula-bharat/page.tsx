@@ -41,7 +41,7 @@ function useAnimatedCounter(target: number, duration: number = 2000) {
           requestAnimationFrame(animate);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
 
     if (ref.current) observer.observe(ref.current);
@@ -51,10 +51,21 @@ function useAnimatedCounter(target: number, duration: number = 2000) {
   return { count, ref };
 }
 
-function AnimatedStatCard({ label, value, isNumeric }: { label: string; value: string; isNumeric: boolean }) {
+function AnimatedStatCard({
+  label,
+  value,
+  isNumeric,
+}: {
+  label: string;
+  value: string;
+  isNumeric: boolean;
+}) {
   const numericValue = parseInt(value, 10);
-  const { count, ref } = useAnimatedCounter(isNumeric && !isNaN(numericValue) ? numericValue : 0);
-  const displayValue = isNumeric && !isNaN(numericValue) ? String(count) : value;
+  const { count, ref } = useAnimatedCounter(
+    isNumeric && !isNaN(numericValue) ? numericValue : 0,
+  );
+  const displayValue =
+    isNumeric && !isNaN(numericValue) ? String(count) : value;
 
   return (
     <div ref={ref}>
@@ -80,12 +91,17 @@ export default function FormulaBharatPage() {
           .select("*")
           .order("display_order", { ascending: true });
 
-        const fbMedia = data ? data.filter((item: any) => item.tag && item.tag.startsWith("FB")) : [];
+        const fbMedia = data
+          ? data.filter((item: any) => item.tag && item.tag.startsWith("FB"))
+          : [];
 
         if (fbMedia.length > 0) {
           const mapped = fbMedia.map((item: any, idx: number) => ({
             id: idx + 1,
-            type: (item.type || "IMAGE").toLowerCase() === "video" ? "video" : "image",
+            type:
+              (item.type || "IMAGE").toLowerCase() === "video"
+                ? "video"
+                : "image",
             title: item.title,
             desc: item.description || "",
             url: item.media_url,
@@ -93,7 +109,9 @@ export default function FormulaBharatPage() {
           }));
           setGridItems(mapped);
 
-          const videoMedia = fbMedia.filter((item: any) => (item.type || "").toUpperCase() === "VIDEO");
+          const videoMedia = fbMedia.filter(
+            (item: any) => (item.type || "").toUpperCase() === "VIDEO",
+          );
           const mappedVideos = videoMedia.map((item: any) => ({
             id: item.id.toString(),
             title: item.title,
@@ -113,7 +131,7 @@ export default function FormulaBharatPage() {
               desc: item.description || "",
               url: item.mediaUrl,
               span: getGridSpan(i),
-            }))
+            })),
           );
           setVideos(fallbackVideos);
         }
@@ -127,7 +145,7 @@ export default function FormulaBharatPage() {
             desc: item.description || "",
             url: item.mediaUrl,
             span: getGridSpan(i),
-          }))
+          })),
         );
         setVideos(fallbackVideos);
       } finally {
@@ -141,9 +159,10 @@ export default function FormulaBharatPage() {
     { label: "Vehicle Name", value: "AR25", isNumeric: false },
     { label: "Overall Rank", value: "11", isNumeric: true },
     { label: "Bplan Rank", value: "3", isNumeric: true },
-    { label: "Endurance", value: "Cleared", isNumeric: false },
+    { label: "Karnataka State Rank", value: "5", isNumeric: true },
     { label: "Noise Test", value: "Cleared", isNumeric: false },
     { label: "Tilt Test", value: "Cleared", isNumeric: false },
+    { label: "Mechanical Scrutiny", value: "Cleared", isNumeric: false },
   ];
 
   return (
