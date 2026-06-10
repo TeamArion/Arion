@@ -14,7 +14,7 @@ export const mentors: Mentor[] = [
     name: "ADITYA PARTHIBAN",
     role: "FORMER TEAM MANAGER",
     description:
-      "Oversees logistics, resource procurement, and institutional sponsorship relations.",
+      "Oversees logistics, resource procurement & allocation & directing sponsorship efforts.",
     image: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/Mentor/mentor_ap.png",
   },
   {
@@ -28,21 +28,21 @@ export const mentors: Mentor[] = [
     name: "Akshaye Aaron",
     role: "FORMER MARKETING HEAD",
     description:
-      "Expertise in high-voltage battery systems and motor controller optimization.",
+      "Expertise in marketing strategy, brand development, and social media traction",
     image: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/Mentor/mentor_aks.png",
   },
   {
     name: "SUDARSHAN KM",
     role: "FORMER POWERTRAIN HEAD",
     description:
-      "Specializes in data acquisition systems and low-voltage wiring harness design.",
+      "Specializes in data acquisition systems and low-voltage wiring harness design & optimizing Engine peformance",
     image: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/Mentor/mentor_sudarshan.png",
   },
   {
     name: "AISHWARYA JOSHI",
     role: "COST REPORT MENTOR",
     description:
-      "CFD lead focusing on drag reduction and high-downforce aerodynamic packaging.",
+      "Development of cost report templates, data collection methodologies, and cost analysis techniques.",
     image: "https://kgvzyvkoafffsqwnqscl.supabase.co/storage/v1/object/public/Media/team/Mentor/mentor_aishwarya.png",
   },
 ];
